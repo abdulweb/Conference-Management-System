@@ -1,0 +1,1285 @@
+
+/* ------------- General ------------- */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic);
+@font-face {
+	font-family: "cs-ctrl-basic";
+	src: url("cs-ctrl-basic.eot");
+	src: url("cs-ctrl-basic.eot#iefix") format("embedded-opentype"),
+			url("cs-ctrl-basic.woff") format("woff"),
+			url("cs-ctrl-basic.ttf") format("truetype"),
+			url("cs-ctrl-basic.svg#basic") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.csslider1 {
+  display: inline-block;
+  position: relative;
+  max-width: 960px;
+  
+  
+
+  width: 100%;
+}
+.csslider1,
+.csslider1 *,
+.csslider1 *:after,
+.csslider1 *:before {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.csslider1 > .cs_anchor {
+  display: none;
+}
+.csslider1 > ul {
+  position: relative;
+  z-index: 1;
+  font-size: 0;
+  line-height: 0;
+  margin: 0 auto;
+  padding: 0;
+  
+  overflow: hidden;
+  white-space: nowrap;
+}
+.csslider1 > ul > .cs_skeleton {
+  width: 100%;
+  visibility: hidden;
+  font-size: 0px;
+  line-height: 0;
+}
+
+.csslider1 > ul > .slide.img img {
+  width: 100%;
+}
+
+
+
+.csslider1 > ul > .slide.img a {
+  font-size: 0pt;
+  color: transparent;
+}
+.csslider1 > ul > .slide {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-size: 15px;
+  font-size: initial;
+  line-height: normal;
+  white-space: normal;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+.csslider1 .cs_engine{
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  font-size: 0pt;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.csslider1 > ul > li.img,
+.csslider1 > .cs_arrowprev,
+.csslider1 > .cs_arrownext,
+.csslider1 > .cs_bullets,
+.csslider1 > .cs_play_pause {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* ------------- /General Styles ------------- */
+
+/* ------------- General Arrows ------------- */
+.csslider1 > .cs_arrowprev,
+.csslider1 > .cs_arrownext {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.csslider1 > .cs_arrowprev > label,
+.csslider1 > .cs_arrownext > label {
+  position: absolute;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0;
+  z-index: -1;
+}
+.csslider1 > .cs_arrowprev {
+  left: 0;
+}
+.csslider1 > .cs_arrownext {
+  right: 0;
+}
+
+.csslider1 > .slide:checked ~ .cs_arrowprev > label,
+.csslider1 > .slide:checked ~ .cs_arrownext > label {
+  opacity: 0;
+  z-index: -1;
+}
+
+
+
+.csslider1 > #cs_slide1_0:checked ~ .cs_arrowprev > label.num5,
+.csslider1 > #cs_pause1_0:checked ~ .cs_arrowprev > label.num5,
+.csslider1 > #cs_slide1_0:checked ~ .cs_arrownext > label.num1,
+.csslider1 > #cs_pause1_0:checked ~ .cs_arrownext > label.num1, 
+.csslider1 > #cs_slide1_1:checked ~ .cs_arrowprev > label.num0,
+.csslider1 > #cs_pause1_1:checked ~ .cs_arrowprev > label.num0,
+.csslider1 > #cs_slide1_1:checked ~ .cs_arrownext > label.num2,
+.csslider1 > #cs_pause1_1:checked ~ .cs_arrownext > label.num2, 
+.csslider1 > #cs_slide1_2:checked ~ .cs_arrowprev > label.num1,
+.csslider1 > #cs_pause1_2:checked ~ .cs_arrowprev > label.num1,
+.csslider1 > #cs_slide1_2:checked ~ .cs_arrownext > label.num3,
+.csslider1 > #cs_pause1_2:checked ~ .cs_arrownext > label.num3, 
+.csslider1 > #cs_slide1_3:checked ~ .cs_arrowprev > label.num2,
+.csslider1 > #cs_pause1_3:checked ~ .cs_arrowprev > label.num2,
+.csslider1 > #cs_slide1_3:checked ~ .cs_arrownext > label.num4,
+.csslider1 > #cs_pause1_3:checked ~ .cs_arrownext > label.num4, 
+.csslider1 > #cs_slide1_4:checked ~ .cs_arrowprev > label.num3,
+.csslider1 > #cs_pause1_4:checked ~ .cs_arrowprev > label.num3,
+.csslider1 > #cs_slide1_4:checked ~ .cs_arrownext > label.num5,
+.csslider1 > #cs_pause1_4:checked ~ .cs_arrownext > label.num5, 
+.csslider1 > #cs_slide1_5:checked ~ .cs_arrowprev > label.num4,
+.csslider1 > #cs_pause1_5:checked ~ .cs_arrowprev > label.num4,
+.csslider1 > #cs_slide1_5:checked ~ .cs_arrownext > label.num0,
+.csslider1 > #cs_pause1_5:checked ~ .cs_arrownext > label.num0 {
+  opacity: 1;
+  z-index: 5;
+}
+
+
+@-webkit-keyframes arrow1 {
+  0%, 16.656666666666666% { opacity: 1; z-index: 5; }
+  16.666666666666668%, 100%  { opacity: 0; z-index: -1; }
+}
+@keyframes arrow1 {
+  0%, 16.656666666666666% { opacity: 1; z-index: 5; }
+  16.666666666666668%, 100%  { opacity: 0; z-index: -1; }
+}
+
+
+.csslider1 > #cs_play1:checked ~ .cs_arrowprev > label.num5,
+.csslider1 > #cs_play1:checked ~ .cs_arrownext > label.num1 {
+  -webkit-animation: arrow1 26400ms infinite -1300ms;
+  animation: arrow1 26400ms infinite -1300ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_arrowprev > label.num0,
+.csslider1 > #cs_play1:checked ~ .cs_arrownext > label.num2 {
+  -webkit-animation: arrow1 26400ms infinite 3100ms;
+  animation: arrow1 26400ms infinite 3100ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_arrowprev > label.num1,
+.csslider1 > #cs_play1:checked ~ .cs_arrownext > label.num3 {
+  -webkit-animation: arrow1 26400ms infinite 7500ms;
+  animation: arrow1 26400ms infinite 7500ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_arrowprev > label.num2,
+.csslider1 > #cs_play1:checked ~ .cs_arrownext > label.num4 {
+  -webkit-animation: arrow1 26400ms infinite 11900ms;
+  animation: arrow1 26400ms infinite 11900ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_arrowprev > label.num3,
+.csslider1 > #cs_play1:checked ~ .cs_arrownext > label.num5 {
+  -webkit-animation: arrow1 26400ms infinite 16300ms;
+  animation: arrow1 26400ms infinite 16300ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_arrowprev > label.num4,
+.csslider1 > #cs_play1:checked ~ .cs_arrownext > label.num0 {
+  -webkit-animation: arrow1 26400ms infinite 20700ms;
+  animation: arrow1 26400ms infinite 20700ms;
+}
+
+
+.csslider1 > .slide:checked ~ .cs_arrowprev > label,
+.csslider1 > .slide:checked ~ .cs_arrownext > label,
+.csslider1 > .pause:checked ~ .cs_arrowprev > label,
+.csslider1 > .pause:checked ~ .cs_arrownext > label {
+  -webkit-animation: none;
+  animation: none;
+}
+
+
+/* ------------- /General Arrows ------------- */
+
+/* ------------- General Bullets ------------- */
+.csslider1 > .cs_bullets {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 6;
+  font-size: 0;
+  line-height: 8pt;
+  text-align: center;
+}
+.csslider1 > .cs_bullets > div {
+  margin-left: -50%;
+  width: 100%;
+}
+.csslider1 > .cs_bullets > label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.csslider1 > .cs_bullets > label > .cs_thumb {
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  line-height: 0;
+  left: -76.5px;
+  top: -48px;
+}
+.csslider1 > .cs_bullets > label > .cs_thumb > img {
+  max-width: none;
+}
+/* ------------- /General Bullets ------------- */
+
+/* ------------- General Description ------------- */
+.csslider1 > .cs_description {
+  z-index: 3;
+}
+.csslider1 > .cs_description a,
+.csslider1 > .cs_description a:visited,
+.csslider1 > .cs_description a:active {
+  color: inherit;
+}
+.csslider1 > .cs_description a:hover {
+  text-decoration: none;
+}
+.csslider1 > .cs_description > label {
+  position: absolute;
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  max-width: 50%;
+  left: 0;
+}
+.csslider1 > .cs_description > label > span {
+  vertical-align: top;
+}
+.csslider1 > .cs_description > label span {
+  display: inline-block;
+}
+/* ------------- /General Description ------------- */
+
+/* ------------- General Play Pause ------------- */
+.csslider1 > .cs_play_pause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+}
+.csslider1 > .cs_play_pause > label {
+  position: absolute;
+  cursor: pointer;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause,
+.csslider1 > .slide:checked ~ .cs_play_pause > .cs_play,
+.csslider1 > .pause:checked ~ .cs_play_pause > .cs_play {
+  display: block;
+  z-index: 5;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_play,
+.csslider1 > .slide:checked ~ .cs_play_pause > .cs_pause,
+.csslider1 > .pause:checked ~ .cs_play_pause > .cs_pause {
+  display: none;
+  z-index: -1;
+}
+
+
+
+@-webkit-keyframes pauseChange1 {
+  0%, 16.656666666666666% { opacity: 1; z-index: 5; }
+  16.666666666666668%, 100%  { opacity: 0; z-index: -1; }
+}
+@keyframes pauseChange1 {
+  0%, 16.656666666666666% { opacity: 1; z-index: 5; }
+  16.666666666666668%, 100%  { opacity: 0; z-index: -1; }
+}
+
+
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause.num0 {
+  opacity: 0;
+  z-index: -1;
+  -webkit-animation: pauseChange1 26400ms infinite -1300ms;
+  animation: pauseChange1 26400ms infinite -1300ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause.num1 {
+  opacity: 0;
+  z-index: -1;
+  -webkit-animation: pauseChange1 26400ms infinite 3100ms;
+  animation: pauseChange1 26400ms infinite 3100ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause.num2 {
+  opacity: 0;
+  z-index: -1;
+  -webkit-animation: pauseChange1 26400ms infinite 7500ms;
+  animation: pauseChange1 26400ms infinite 7500ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause.num3 {
+  opacity: 0;
+  z-index: -1;
+  -webkit-animation: pauseChange1 26400ms infinite 11900ms;
+  animation: pauseChange1 26400ms infinite 11900ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause.num4 {
+  opacity: 0;
+  z-index: -1;
+  -webkit-animation: pauseChange1 26400ms infinite 16300ms;
+  animation: pauseChange1 26400ms infinite 16300ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_play_pause > .cs_pause.num5 {
+  opacity: 0;
+  z-index: -1;
+  -webkit-animation: pauseChange1 26400ms infinite 20700ms;
+  animation: pauseChange1 26400ms infinite 20700ms;
+}
+
+
+.csslider1 > .slide:checked ~ .cs_play_pause > .cs_pause,
+.csslider1 > .pause:checked ~ .cs_play_pause > .cs_pause {
+  -webkit-animation: none;
+  animation: none;
+}
+
+
+/* ------------- /General Play Pause ------------- */
+
+/* ------------- Effect ------------- */
+.csslider1 > ul {
+  overflow: hidden;
+}
+
+.csslider1 > ul > .slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  opacity: 0;
+  z-index: 1;
+
+  -webkit-transition: -webkit-transform 1300ms cubic-bezier(0.680, -0.550, 0.265, 1.550), opacity 1300ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  transition: -webkit-transform 1300ms cubic-bezier(0.680, -0.550, 0.265, 1.550), transform 1300ms cubic-bezier(0.680, -0.550, 0.265, 1.550), opacity 1300ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+.csslider1 > #cs_slide1_0:checked ~ ul > .slide.num0,
+.csslider1 > #cs_pause1_0:checked ~ ul > .slide.num0,
+.csslider1 > #cs_slide1_1:checked ~ ul > .slide.num1,
+.csslider1 > #cs_pause1_1:checked ~ ul > .slide.num1,
+.csslider1 > #cs_slide1_2:checked ~ ul > .slide.num2,
+.csslider1 > #cs_pause1_2:checked ~ ul > .slide.num2,
+.csslider1 > #cs_slide1_3:checked ~ ul > .slide.num3,
+.csslider1 > #cs_pause1_3:checked ~ ul > .slide.num3,
+.csslider1 > #cs_slide1_4:checked ~ ul > .slide.num4,
+.csslider1 > #cs_pause1_4:checked ~ ul > .slide.num4,
+.csslider1 > #cs_slide1_5:checked ~ ul > .slide.num5,
+.csslider1 > #cs_pause1_5:checked ~ ul > .slide.num5 {
+  opacity: 1;
+  z-index: 2;
+
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+
+
+
+@-webkit-keyframes jump1 {
+  0%, 21.590909090909093%, 100%  {
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+  4.924242424242425%, 16.666666666666668%  {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+  0%, 16.665666666666667%  {
+    z-index: 2;
+    -webkit-animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+  16.66766666666667%, 100%  { z-index: 1; }
+}
+@keyframes jump1 {
+  0%, 21.590909090909093%, 100%  {
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+  4.924242424242425%, 16.666666666666668%  {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+  0%, 16.665666666666667%  {
+    z-index: 2;
+    -webkit-animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    animation-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+  16.66766666666667%, 100%  { z-index: 1; }
+}
+
+.csslider1 > #cs_play1:checked ~ ul > .slide.num0 {
+  -webkit-animation: jump1 26400ms infinite -1300ms;
+  animation: jump1 26400ms infinite -1300ms;
+}
+.csslider1 > #cs_play1:checked ~ ul > .slide.num1 {
+  -webkit-animation: jump1 26400ms infinite 3100ms;
+  animation: jump1 26400ms infinite 3100ms;
+}
+.csslider1 > #cs_play1:checked ~ ul > .slide.num2 {
+  -webkit-animation: jump1 26400ms infinite 7500ms;
+  animation: jump1 26400ms infinite 7500ms;
+}
+.csslider1 > #cs_play1:checked ~ ul > .slide.num3 {
+  -webkit-animation: jump1 26400ms infinite 11900ms;
+  animation: jump1 26400ms infinite 11900ms;
+}
+.csslider1 > #cs_play1:checked ~ ul > .slide.num4 {
+  -webkit-animation: jump1 26400ms infinite 16300ms;
+  animation: jump1 26400ms infinite 16300ms;
+}
+.csslider1 > #cs_play1:checked ~ ul > .slide.num5 {
+  -webkit-animation: jump1 26400ms infinite 20700ms;
+  animation: jump1 26400ms infinite 20700ms;
+}
+
+
+
+.csslider1 > #cs_play1:checked ~ ul > .slide,
+.csslider1 > .pause:checked ~ ul > .slide {
+  -webkit-transition: none;
+  transition: none;
+}
+
+
+/* ------------- /Effect ------------- */
+
+/* ------------- Template Show on hover ------------- */
+.csslider1 > .cs_play_pause {
+  -webkit-transition: .4s all 0s ease;
+  transition: .4s all 0s ease;
+}
+.csslider1 > .cs_arrowprev {
+  -webkit-transition: .4s all .15s ease;
+  transition: .4s all .15s ease;
+}
+.csslider1 > .cs_arrownext {
+  -webkit-transition: .4s all .3s ease;
+  transition: .4s all .3s ease;
+}
+.csslider1 > .cs_arrowprev,
+.csslider1 > .cs_arrownext,
+.csslider1 > .cs_play_pause {
+  opacity: 0;
+  -webkit-transform: translateY(-30px);
+  transform: translateY(-30px);
+}
+
+.csslider1:hover > .cs_arrowprev,
+.csslider1:hover > .cs_arrownext,
+.csslider1:hover > .cs_play_pause {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+/* ------------- /Template Show on hover ------------- */
+
+/* ------------- Template Arrows ------------- */
+.csslider1 > .cs_arrowprev > label,
+.csslider1 > .cs_arrownext > label {
+  padding: 17px;
+  height: 23px;
+  width: 23px;
+  margin-top: -28px;
+  margin-left: -28px;
+
+  background-color: #CBECFD;
+
+  border-radius: 50%;
+}
+.csslider1 > .cs_arrowprev > label,
+.csslider1 > .cs_arrownext > label,
+.csslider1 > .cs_arrowprev > label span:after,
+.csslider1 > .cs_arrownext > label span:after {
+  -webkit-transition: background-color 0.4s, color 0.4s;
+  transition: background-color 0.4s, color 0.4s;
+}
+.csslider1 > .cs_arrowprev {
+  margin-left: 2px;
+  left: 45px;
+}
+.csslider1 > .cs_arrownext {
+  margin-right: 2px;
+  right: 45px;
+}
+.csslider1 > .cs_arrowprev > label span,
+.csslider1 > .cs_arrownext > label span {
+  display: block;
+  color: #3A4A5A;
+}
+.csslider1 > .cs_arrowprev > label span:after,
+.csslider1 > .cs_arrownext > label span:after {
+  display: block;
+  font: 21px "cs-ctrl-basic";
+  line-height: 23px;
+  text-align: center;
+}
+/* IE10+ hack */
+_:-ms-input-placeholder, :root .csslider1 > .cs_arrowprev > label span:after {
+  line-height: 29px;
+}
+_:-ms-input-placeholder, :root .csslider1 > .cs_arrownext > label span:after {
+  line-height: 29px;
+}
+
+.csslider1 > .cs_arrowprev > label span:after {
+  content: '\e800';
+}
+.csslider1 > .cs_arrownext > label span:after {
+  content: '\e801';
+}
+
+.csslider1 > .cs_arrowprev:hover > label,
+.csslider1 > .cs_arrownext:hover > label {
+  background-color: #e5f6fe;
+}
+
+.csslider1 > .cs_arrownext:hover > label span {
+  color: #000;
+  -webkit-animation: nextArrow1 .7s infinite ease-in-out;
+  animation: nextArrow1 .7s infinite ease-in-out;
+}
+.csslider1 > .cs_arrowprev:hover > label span {
+  color: #000;
+  -webkit-animation: prevArrow1 .7s infinite ease-in-out;
+  animation: prevArrow1 .7s infinite ease-in-out;
+}
+
+
+@keyframes nextArrow1 {
+  0%, 100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  25% {
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+  75% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+}
+@-webkit-keyframes nextArrow1 {
+  0%, 100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  25% {
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+  75% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+}
+
+@-webkit-keyframes prevArrow1 {
+  0%, 100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  25% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+  75% {
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+}
+@keyframes prevArrow1 {
+  0%, 100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  25% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+  75% {
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+}
+/* ------------- /Template Arrows ------------- */
+
+/* ------------- Template Play Pause ------------- */
+.csslider1 > .cs_play_pause > label{
+  text-decoration: none;
+  padding: 17px;
+  height: 23px;
+  width: 23px;
+
+  margin-top: -28px;
+  margin-left: -28px;
+
+  background-color: #CBECFD;
+
+  border-radius: 50%;
+}
+.csslider1 > .cs_play_pause > label,
+.csslider1 > .cs_play_pause > label span:after {
+  -webkit-transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+.csslider1 > .cs_play_pause > label span {
+  display: block;
+  color: #3A4A5A;
+}
+.csslider1 > .cs_play_pause > label span:after{
+  display: block;
+  font: 15px "cs-ctrl-basic";
+  line-height: 25px;
+  text-align: center;
+}
+/* IE10+ hack */
+_:-ms-input-placeholder, :root .csslider1 > .cs_play_pause > label span:after {
+  line-height: 28px;
+}
+.csslider1 > .cs_play_pause > .cs_play span:after {
+  content: '\e802';
+}
+.csslider1 > .cs_play_pause > .cs_pause span:after {
+  content: '\e803';
+}
+
+.csslider1 > .cs_play_pause:hover > label {
+  background-color: #e5f6fe;
+}
+.csslider1 > .cs_play_pause:hover > label span {
+  color: #000;
+  -wibkit-animation: playPause1 .7s infinite ease-in-out;
+  animation: playPause1 .7s infinite ease-in-out;
+}
+
+@-webkit-keyframes playPause1 {
+  0%, 100% { -webkit-transform: translateY(0px); transform: translateY(0px); }
+  25% { -webkit-transform: translateY(2px); transform: translateY(2px); }
+  75% { -webkit-transform: translateY(-2px); transform: translateY(-2px); }
+}
+@keyframes playPause1 {
+  0%, 100% { -webkit-transform: translateY(0px); transform: translateY(0px); }
+  25% { -webkit-transform: translateY(2px); transform: translateY(2px); }
+  75% { -webkit-transform: translateY(-2px); transform: translateY(-2px); }
+}
+/* ------------- /Template Play Pause ------------- */
+
+/* ------------- Template Bullets ------------- */
+.csslider1 > .cs_bullets {
+  bottom: 5px;
+  margin-bottom: 5px;
+}
+.csslider1 > .cs_bullets > label {
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 9px;
+  background: #CBECFD;
+}
+
+
+.csslider1 > .cs_bullets > label > .cs_thumb {
+  border: 3px solid #CBECFD;
+  margin-top: -150%;
+  margin-left: 3px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.csslider1 > .cs_bullets > label > .cs_thumb:before {
+  content: '';
+  position: absolute;
+  width: 0; 
+  height: 0; 
+  left: 50%;
+  margin-left: -4px;
+  bottom: -9px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  
+  border-top: 7px solid #CBECFD;
+}
+.csslider1 > .cs_bullets > label:hover > .cs_thumb {
+  margin-top: -12px;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+.csslider1 > .cs_bullets > label > .cs_point {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -2px;
+  margin-top: -2px;
+  background: transparent;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.csslider1 > .cs_bullets > label:hover > .cs_point,
+
+.csslider1 > #cs_slide1_0:checked ~ .cs_bullets > label.num0 > .cs_point,
+.csslider1 > #cs_pause1_0:checked ~ .cs_bullets > label.num0 > .cs_point,
+.csslider1 > #cs_slide1_1:checked ~ .cs_bullets > label.num1 > .cs_point,
+.csslider1 > #cs_pause1_1:checked ~ .cs_bullets > label.num1 > .cs_point,
+.csslider1 > #cs_slide1_2:checked ~ .cs_bullets > label.num2 > .cs_point,
+.csslider1 > #cs_pause1_2:checked ~ .cs_bullets > label.num2 > .cs_point,
+.csslider1 > #cs_slide1_3:checked ~ .cs_bullets > label.num3 > .cs_point,
+.csslider1 > #cs_pause1_3:checked ~ .cs_bullets > label.num3 > .cs_point,
+.csslider1 > #cs_slide1_4:checked ~ .cs_bullets > label.num4 > .cs_point,
+.csslider1 > #cs_pause1_4:checked ~ .cs_bullets > label.num4 > .cs_point,
+.csslider1 > #cs_slide1_5:checked ~ .cs_bullets > label.num5 > .cs_point,
+.csslider1 > #cs_pause1_5:checked ~ .cs_bullets > label.num5 > .cs_point {
+  background: #3A4A5A;
+}
+
+
+
+
+@keyframes bullet1 {
+  0%, 16.656666666666666%  { background: #3A4A5A; }
+  16.666666666666668%, 100% { background: transparent; }
+}
+@-webkit-keyframes bullet1 {
+  0%, 16.656666666666666%  { background: #3A4A5A; }
+  16.666666666666668%, 100% { background: transparent; }
+}
+
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label.num0 > .cs_point,
+.csslider1 > #cs_pause1:checked ~ .cs_bullets > label.num0 > .cs_point {
+  -webkit-animation: bullet1 26400ms infinite -1300ms;
+  animation: bullet1 26400ms infinite -1300ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label.num1 > .cs_point,
+.csslider1 > #cs_pause1:checked ~ .cs_bullets > label.num1 > .cs_point {
+  -webkit-animation: bullet1 26400ms infinite 3100ms;
+  animation: bullet1 26400ms infinite 3100ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label.num2 > .cs_point,
+.csslider1 > #cs_pause1:checked ~ .cs_bullets > label.num2 > .cs_point {
+  -webkit-animation: bullet1 26400ms infinite 7500ms;
+  animation: bullet1 26400ms infinite 7500ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label.num3 > .cs_point,
+.csslider1 > #cs_pause1:checked ~ .cs_bullets > label.num3 > .cs_point {
+  -webkit-animation: bullet1 26400ms infinite 11900ms;
+  animation: bullet1 26400ms infinite 11900ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label.num4 > .cs_point,
+.csslider1 > #cs_pause1:checked ~ .cs_bullets > label.num4 > .cs_point {
+  -webkit-animation: bullet1 26400ms infinite 16300ms;
+  animation: bullet1 26400ms infinite 16300ms;
+}
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label.num5 > .cs_point,
+.csslider1 > #cs_pause1:checked ~ .cs_bullets > label.num5 > .cs_point {
+  -webkit-animation: bullet1 26400ms infinite 20700ms;
+  animation: bullet1 26400ms infinite 20700ms;
+}
+
+
+
+.csslider1 > #cs_play1:checked ~ .cs_bullets > label > .cs_point,
+.csslider1 > .pause:checked ~ .cs_bullets > label > .cs_point {
+  -webkit-transition: none;
+  transition: none;
+}
+
+
+.csslider1 > .slide:checked ~ .cs_bullets > label > .cs_point,
+.csslider1 > .pause:checked ~ .cs_bullets > label > .cs_point {
+  -webkit-animation: none;
+  animation: none;
+}
+
+
+/* ------------- Template /Bullets ------------- */
+
+/* ------------- Template Description ------------- */
+
+
+.csslider1 > .cs_description > label {
+  font-family: "Open Sans Condensed",sans-serif;
+  font-size: 20px;
+  line-height: normal;
+  bottom: 50px;
+  top: auto;
+  left: 10px;
+}
+
+.csslider1 > .cs_description > label > span {
+  color: #3A4A5A;
+  position: relative;
+  padding: 13px;
+  border-radius: 10px;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+.csslider1 > #cs_slide1_0:checked ~ .cs_description > .num0 > .cs_title,
+.csslider1 > #cs_slide1_0:checked ~ .cs_description > .num0 > .cs_descr,
+.csslider1 > #cs_pause1_0:checked ~ .cs_description > .num0 > .cs_title,
+.csslider1 > #cs_pause1_0:checked ~ .cs_description > .num0 > .cs_descr,
+.csslider1 > #cs_slide1_1:checked ~ .cs_description > .num1 > .cs_title,
+.csslider1 > #cs_slide1_1:checked ~ .cs_description > .num1 > .cs_descr,
+.csslider1 > #cs_pause1_1:checked ~ .cs_description > .num1 > .cs_title,
+.csslider1 > #cs_pause1_1:checked ~ .cs_description > .num1 > .cs_descr,
+.csslider1 > #cs_slide1_2:checked ~ .cs_description > .num2 > .cs_title,
+.csslider1 > #cs_slide1_2:checked ~ .cs_description > .num2 > .cs_descr,
+.csslider1 > #cs_pause1_2:checked ~ .cs_description > .num2 > .cs_title,
+.csslider1 > #cs_pause1_2:checked ~ .cs_description > .num2 > .cs_descr,
+.csslider1 > #cs_slide1_3:checked ~ .cs_description > .num3 > .cs_title,
+.csslider1 > #cs_slide1_3:checked ~ .cs_description > .num3 > .cs_descr,
+.csslider1 > #cs_pause1_3:checked ~ .cs_description > .num3 > .cs_title,
+.csslider1 > #cs_pause1_3:checked ~ .cs_description > .num3 > .cs_descr,
+.csslider1 > #cs_slide1_4:checked ~ .cs_description > .num4 > .cs_title,
+.csslider1 > #cs_slide1_4:checked ~ .cs_description > .num4 > .cs_descr,
+.csslider1 > #cs_pause1_4:checked ~ .cs_description > .num4 > .cs_title,
+.csslider1 > #cs_pause1_4:checked ~ .cs_description > .num4 > .cs_descr,
+.csslider1 > #cs_slide1_5:checked ~ .cs_description > .num5 > .cs_title,
+.csslider1 > #cs_slide1_5:checked ~ .cs_description > .num5 > .cs_descr,
+.csslider1 > #cs_pause1_5:checked ~ .cs_description > .num5 > .cs_title,
+.csslider1 > #cs_pause1_5:checked ~ .cs_description > .num5 > .cs_descr {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+
+.csslider1 > #cs_slide1_0:checked ~ .cs_description > .num0 .cs_wrapper,
+.csslider1 > #cs_pause1_0:checked ~ .cs_description > .num0 .cs_wrapper,
+.csslider1 > #cs_slide1_1:checked ~ .cs_description > .num1 .cs_wrapper,
+.csslider1 > #cs_pause1_1:checked ~ .cs_description > .num1 .cs_wrapper,
+.csslider1 > #cs_slide1_2:checked ~ .cs_description > .num2 .cs_wrapper,
+.csslider1 > #cs_pause1_2:checked ~ .cs_description > .num2 .cs_wrapper,
+.csslider1 > #cs_slide1_3:checked ~ .cs_description > .num3 .cs_wrapper,
+.csslider1 > #cs_pause1_3:checked ~ .cs_description > .num3 .cs_wrapper,
+.csslider1 > #cs_slide1_4:checked ~ .cs_description > .num4 .cs_wrapper,
+.csslider1 > #cs_pause1_4:checked ~ .cs_description > .num4 .cs_wrapper,
+.csslider1 > #cs_slide1_5:checked ~ .cs_description > .num5 .cs_wrapper,
+.csslider1 > #cs_pause1_5:checked ~ .cs_description > .num5 .cs_wrapper {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.csslider1 > .cs_description > label > .cs_title {
+  background-color: #CBECFD;
+  margin: -5px 10px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
+  -webkit-transform: translateY(-100px);
+  transform: translateY(-100px);
+
+  -webkit-transition:
+    950ms opacity 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms visibility 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  transition:
+    950ms opacity 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms transform 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms visibility 390ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+.csslider1 > .cs_description > label > .cs_descr {
+  background-color: #e5f6fe;
+  text-align: left;
+  font-size: 0.8em;
+  margin: -5px 20px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+  -webkit-transform: translateY(100px);
+  transform: translateY(100px);
+
+  -webkit-transition:
+    950ms opacity 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms visibility 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  transition:
+    950ms opacity 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms transform 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms visibility 640ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+
+
+.csslider1 > .cs_description > label > .cs_title > .cs_wrapper {
+  opacity: 0;
+  -webkit-transform: translateY(-100px);
+  transform: translateY(-100px);
+
+  -webkit-transition:
+    950ms opacity 540ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 540ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  transition:
+    950ms opacity 540ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 540ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms transform 540ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+.csslider1 > .cs_description > label > .cs_descr > .cs_wrapper {
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+  transform: translateY(100px);
+
+  -webkit-transition:
+    950ms opacity 790ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 790ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  transition:
+    950ms opacity 790ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms -webkit-transform 790ms cubic-bezier(0.680, -0.550, 0.265, 1.550),
+    950ms transform 790ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+
+
+
+
+@-webkit-keyframes cs_title1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    z-index: 2;
+    visibility: visible;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    z-index: 2;
+    visibility: visible;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    z-index: 2;
+    visibility: hidden;
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+  18.475909090909095%, 100%  { z-index: 0; }
+}
+@keyframes cs_title1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    z-index: 2;
+    visibility: visible;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    z-index: 2;
+    visibility: visible;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    z-index: 2;
+    visibility: hidden;
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+  18.475909090909095%, 100%  { z-index: 0; }
+}
+
+
+@-webkit-keyframes cs_descr1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    z-index: 1;
+    visibility: hidden;
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+  18.475909090909095%, 100%  { z-index: 0; }
+}
+@keyframes cs_descr1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    z-index: 1;
+    visibility: hidden;
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+  18.475909090909095%, 100%  { z-index: 0; }
+}
+
+
+.csslider1 > #cs_play1:checked ~ .cs_description > .num0  > .cs_title {
+  -webkit-animation: cs_title1 26400ms infinite -909.9999999999999ms ease;
+  animation: cs_title1 26400ms infinite -909.9999999999999ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num1  > .cs_title {
+  -webkit-animation: cs_title1 26400ms infinite 3490ms ease;
+  animation: cs_title1 26400ms infinite 3490ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num2  > .cs_title {
+  -webkit-animation: cs_title1 26400ms infinite 7890ms ease;
+  animation: cs_title1 26400ms infinite 7890ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num3  > .cs_title {
+  -webkit-animation: cs_title1 26400ms infinite 12290ms ease;
+  animation: cs_title1 26400ms infinite 12290ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num4  > .cs_title {
+  -webkit-animation: cs_title1 26400ms infinite 16690ms ease;
+  animation: cs_title1 26400ms infinite 16690ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num5  > .cs_title {
+  -webkit-animation: cs_title1 26400ms infinite 21090ms ease;
+  animation: cs_title1 26400ms infinite 21090ms ease;
+}
+
+
+.csslider1 > #cs_play1:checked ~ .cs_description > .num0  > .cs_descr {
+  -webkit-animation: cs_descr1 26400ms infinite -659.9999999999999ms ease;
+  animation: cs_descr1 26400ms infinite -659.9999999999999ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num1  > .cs_descr {
+  -webkit-animation: cs_descr1 26400ms infinite 3740ms ease;
+  animation: cs_descr1 26400ms infinite 3740ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num2  > .cs_descr {
+  -webkit-animation: cs_descr1 26400ms infinite 8140ms ease;
+  animation: cs_descr1 26400ms infinite 8140ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num3  > .cs_descr {
+  -webkit-animation: cs_descr1 26400ms infinite 12540ms ease;
+  animation: cs_descr1 26400ms infinite 12540ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num4  > .cs_descr {
+  -webkit-animation: cs_descr1 26400ms infinite 16940ms ease;
+  animation: cs_descr1 26400ms infinite 16940ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num5  > .cs_descr {
+  -webkit-animation: cs_descr1 26400ms infinite 21340ms ease;
+  animation: cs_descr1 26400ms infinite 21340ms ease;
+}
+
+
+
+
+@-webkit-keyframes cs_title_text1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+}
+@keyframes cs_title_text1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+}
+
+
+@-webkit-keyframes cs_descr_text1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+}
+@keyframes cs_descr_text1 {
+  1.259469696969697%, 15.39719696969697%  {
+    opacity: 1;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  1.7992424242424243%, 14.857424242424244%  {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  18.465909090909093%  {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+}
+
+
+.csslider1 > #cs_play1:checked ~ .cs_description > .num0 .cs_title > .cs_wrapper {
+  -webkit-animation: cs_title_text1 26400ms infinite -759.9999999999999ms ease;
+  animation: cs_title_text1 26400ms infinite -759.9999999999999ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num1 .cs_title > .cs_wrapper {
+  -webkit-animation: cs_title_text1 26400ms infinite 3640ms ease;
+  animation: cs_title_text1 26400ms infinite 3640ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num2 .cs_title > .cs_wrapper {
+  -webkit-animation: cs_title_text1 26400ms infinite 8040ms ease;
+  animation: cs_title_text1 26400ms infinite 8040ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num3 .cs_title > .cs_wrapper {
+  -webkit-animation: cs_title_text1 26400ms infinite 12440ms ease;
+  animation: cs_title_text1 26400ms infinite 12440ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num4 .cs_title > .cs_wrapper {
+  -webkit-animation: cs_title_text1 26400ms infinite 16840ms ease;
+  animation: cs_title_text1 26400ms infinite 16840ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num5 .cs_title > .cs_wrapper {
+  -webkit-animation: cs_title_text1 26400ms infinite 21240ms ease;
+  animation: cs_title_text1 26400ms infinite 21240ms ease;
+}
+
+
+.csslider1 > #cs_play1:checked ~ .cs_description > .num0 .cs_descr > .cs_wrapper {
+  -webkit-animation: cs_descr_text1 26400ms infinite -509.9999999999999ms ease;
+  animation: cs_descr_text1 26400ms infinite -509.9999999999999ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num1 .cs_descr > .cs_wrapper {
+  -webkit-animation: cs_descr_text1 26400ms infinite 3890ms ease;
+  animation: cs_descr_text1 26400ms infinite 3890ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num2 .cs_descr > .cs_wrapper {
+  -webkit-animation: cs_descr_text1 26400ms infinite 8290ms ease;
+  animation: cs_descr_text1 26400ms infinite 8290ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num3 .cs_descr > .cs_wrapper {
+  -webkit-animation: cs_descr_text1 26400ms infinite 12690ms ease;
+  animation: cs_descr_text1 26400ms infinite 12690ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num4 .cs_descr > .cs_wrapper {
+  -webkit-animation: cs_descr_text1 26400ms infinite 17090ms ease;
+  animation: cs_descr_text1 26400ms infinite 17090ms ease;
+}
+.csslider1 > #cs_play1:checked ~ .cs_description > .num5 .cs_descr > .cs_wrapper {
+  -webkit-animation: cs_descr_text1 26400ms infinite 21490ms ease;
+  animation: cs_descr_text1 26400ms infinite 21490ms ease;
+}
+
+
+
+
+.csslider1 > #cs_play1:checked ~ .cs_description > label > .cs_title,
+.csslider1 > #cs_play1:checked ~ .cs_description > label > .cs_descr,
+.csslider1 > #cs_play1:checked ~ .cs_description > label > .cs_title > .cs_wrapper,
+.csslider1 > #cs_play1:checked ~ .cs_description > label > .cs_descr > .cs_wrapper,
+.csslider1 > .pause:checked ~ .cs_description > label > .cs_title,
+.csslider1 > .pause:checked ~ .cs_description > label > .cs_descr,
+.csslider1 > .pause:checked ~ .cs_description > label > .cs_title > .cs_wrapper,
+.csslider1 > .pause:checked ~ .cs_description > label > .cs_descr > .cs_wrapper {
+  -webkit-transition: none;
+  transition: none;
+}
+
+/* ------------- /Template Description ------------- */
+/* hide description & bullets on mobile devices */
+@media
+only screen and (max-width: 480px),
+only screen and (-webkit-max-device-pixel-ratio: 2)      and (max-width: 480px),
+only screen and (   max--moz-device-pixel-ratio: 2)      and (max-width: 480px),
+only screen and (     -o-max-device-pixel-ratio: 2/1)    and (max-width: 480px),
+only screen and (        max-device-pixel-ratio: 2)      and (max-width: 480px),
+only screen and (                max-resolution: 192dpi) and (max-width: 480px),
+only screen and (                max-resolution: 2dppx)  and (max-width: 480px) { 
+  .csslider1 > .cs_description,
+  .csslider1 > .cs_bullets {
+    display: none;
+  }
+}

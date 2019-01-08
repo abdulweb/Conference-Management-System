@@ -1,0 +1,8 @@
+.info-personal{
+	font-style: italic;
+}
+#conference-title{
+        font-style: italic;
+        text-shadow: 1px 2px lightblue;
+        font-weight: bold;
+    }
