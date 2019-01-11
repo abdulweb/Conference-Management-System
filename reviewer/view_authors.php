@@ -97,7 +97,7 @@ $title = $fetch['conf_title'];
                                     <div class="panel panel-info panel-border">
                                         <div class="panel-heading">
                                             <div class="panel-body">
-                                                <img src="<?=$row['document']?>" alt="paper image" class="img img-thumbnail">
+                                               <iframe src = "..\ViewerJS/cmp409.pdf" width='600' height='300' allowfullscreen webkitallowfullscreen></iframe>
                                             </div>
                                         </div>
                                     </div>
