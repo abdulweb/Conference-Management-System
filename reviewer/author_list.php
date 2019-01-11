@@ -109,7 +109,7 @@ $user_email = $_SESSION['user'];
                                     <td ><?=$row['email']?></td>
                                     <td><?=$rows['conf_title']?></td>
                                     <td style="padding-left: 20px;">
-                                        <a href="view_authors.php" class="btn btn-primary ">View</a>
+                                        <a href="view_authors.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-primary ">View</a>
                                     </td>
                                 </tr>
                                 </tbody>
