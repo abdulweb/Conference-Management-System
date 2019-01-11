@@ -24,7 +24,24 @@ if (isset($_POST['loginBtn'])) {
                 $check = mysqli_fetch_assoc($query);
                 $_SESSION['user'] = $username;
                 $_SESSION['usertype'] = $check['usertype'];
-                header('location:author/index.php');
+                if ($_SESSION['usertype'] == 'author') {
+                    header('location:author/profile.php');
+                }
+                elseif ($_SESSION['usertype'] =='reviewer') {
+                     header('location:reviewer/profile.php');
+                }
+                else{
+                     $msg = ' Unauthorize User';
+                    $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <i class="mdi mdi-block-helper"></i>
+                                                        <strong>OOPS! </strong>'.$msg.' 
+                                                    </div>';
+                }
+               
             }
             else{
                  $msg = ' wrong username or password';

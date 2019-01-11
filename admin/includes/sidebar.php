@@ -69,7 +69,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class=" mdi mdi-account-settings-variant"></i><span> users </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="author.php">Authors</a></li>
-                                    <li><a href="reviewers">Reviewers</a></li>
+                                    <li><a href="reviewer.php">Reviewers</a></li>
                                     <li><a href="path.php">Participat</a></li>
                                     
                                 </ul>
@@ -94,9 +94,22 @@
                             
                             <?php
                             }
+                            elseif ($_SESSION['usertype'] == 'reviewer') {?>
+                                <li class="has_sub">
+                                    <a href="index.php" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                                </li>
+                                <li class="has_sub">
+                                    <a href="author_list.php" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Review Author </span> </a>
+                                </li>
+                                <li class="has_sub">
+                                    <a href="profile.php" class="waves-effect"><i class="mdi mdi-account-settings-variant"></i> <span> Profile </span> </a>
+                                </li>
+                           <?php }
+
                             else{
                                 return 'role not get';
                             }
+                            
                             ?>
 
 
