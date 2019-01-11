@@ -216,7 +216,7 @@ if(x< 4)
                                                      <td><?=$row['email']?></td>
                                                      <td> </td>
                                                      <td style="padding-left: 18px;"> 
-                                                     <a href="view_author.php?id=<?php echo htmlentities($row['email']);?>"  ><i class="fa fa-desktop"></i></a>
+                                                     <a href=""  ><i class="fa fa-desktop"></i></a>
 
                                                     <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
 
@@ -245,7 +245,7 @@ if(x< 4)
                                     <td><?=$row['email']?></td>
                                     <td id="title<?php echo $row['id'] ?>"><?=$rows['fullname']?></td>
                                     <td style="padding-left: 20px;">
-                                    <a href="view_author.php?id=<?php echo htmlentities($row['email']);?>"  ><i class="fa fa-desktop"></i></a>
+                                    <a href=""  ><i class="fa fa-desktop"></i></a>
 
                                         <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
 
