@@ -73,24 +73,14 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                 <div class="card-box widget-box-two widget-two-info">
                                     <i class="mdi mdi-chart-areaspline widget-two-icon"></i>
                                     <div class="wigdet-two-content text-white">
-                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">No of paper</p>
-                                        <h2 class="text-white"><span data-plugin="counterup">0</span> <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">No of Author attached</p>
+                                        <h2 class="text-white"><span data-plugin="counterup"><?=mysqli_num_rows(mysqli_query($con, "select * from upload_document where reviewer ='".$_SESSION['user']."'"))?></span> <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
                                         
                                     </div>
                                 </div>
                             </div><!-- end col -->
 
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card-box widget-box-two widget-two-danger">
-                                    <i class="mdi mdi-chart-areaspline widget-two-icon"></i>
-                                    <div class="wigdet-two-content text-white">
-                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">No of Comment</p>
-                                        <h2 class="text-white"><span data-plugin="counterup">0</span> <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
-                                        
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
+                        
                             
                         </div>
                         <!-- end row of grid -->
