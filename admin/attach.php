@@ -15,42 +15,25 @@ else{
     $query = mysqli_query($con, "select * from user_profile where email = '$email'") or die(mysqli_error($con));
     $data = mysqli_fetch_assoc($query);
 
-    $sql = mysqli_query($con, "select * from upload_document where email ='$email'");
-    $data_fetch = mysqli_fetch_assoc($sql);
-    $conf_id = $data_fetch['conf_id'];
-
-    $sql_query = mysqli_query($con,"select * from conference_tb where id = '$conf_id' ") or die(mysqli_error($con));
-    $fetchx = mysqli_fetch_assoc($sql_query);
+    // $reviwe = mysqli_query($con, "select * from user_tb where usertype ='reviewer'");
+    // $data_fetch = mysqli_fetch_assoc($reviwe);
 }
-if(isset($_POST['read'])){
-  $title = $_POST['title'];
-  //echo($title);
-  // //$rebrand = $title.'.pdf';
-  $route = ".\author/".$title;
-  // // echo "<script>alert('$route')</script>";
-  
-  
-  header('Content-Type: application/pdf');
-  header('Content-Disposition: inline; filename="'.basename($route).'"');
-  header('Content-Lenght: '. filesize($route));
-  header('Content-Transfer-Encoding: binary');
-  header('Accept-Ranges: bytes');
-  ob_clean();
-  flush();
-  readfile($route);
+//send email messsage
+if(isset($_POST['add_attach'])) {
+    $conf_id = $_POST['conf_id'];
+    //$auth_email = $_POST['auth_email'];
+    $reviwe_email = $_POST['reviwe_email'];
 
-}
-if(isset($_POST['rejectBtn'])) {
-    $reject = $_POST['reject'];
-     $status = 'Rejected';
-    $Subject = 'Paper Review Status';
-    $body = 'Sorry Your Paper Have been '." ". $status ." " .'Due to Some Reason.  Kindly contact Us to know more';
+    $Subject = 'Reviewer Attachment';
+    $body = 'You have been marge to '." ".$email;
+     $body2 = 'You have been marge to '." ".$reviwe_email;
     
-    $reject_sql = mysqli_query($con, "UPDATE upload_document set status ='2' where id = '$reject' and email ='$email'")or die (mysqli_error($con));
-    sendmail($status,$email,$Subject,$body);
-    if ($reject) 
+    $inset_sql = mysqli_query($con, "UPDATE upload_document set reviewer ='$reviwe_email' where conf_id ='$conf_id' and email ='$email'")or die (mysqli_error($con));
+    sendmail($email,$Subject,$body2);
+    sendmail($reviwe_email,$Subject,$body);
+    if ($inset_sql) 
     {
-         $msg = ' Paper Rejected Successfully';
+         $msg = ' Author Merged Successfully';
          $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <i class="mdi mdi-check"></i><strong> </strong>'.$msg.' 
@@ -66,32 +49,6 @@ if(isset($_POST['rejectBtn'])) {
     }
 }
 
-if(isset($_POST['approveBtn'])) {
-    $approve = $_POST['approve'];
-    $status = 'Approved';
-    $Subject = 'Paper Review Status';
-    $body = 'Congratulation Your Paper Have been '." ". $status;
-    //send notification to author
-
-    $approve_sql = mysqli_query($con, "UPDATE upload_document set status ='1' where id = '$approve' and email ='$email'") or die (mysqli_error($con));
-    sendmail($status,$email,$Subject,$body);
-    if ($approve_sql) 
-    {
-         $msg = ' Paper Approved Successfully';
-         $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <i class="mdi mdi-check"></i><strong> </strong>'.$msg.' 
-                    </div>';
-    }
-    else
-    {
-        $msg = ' Error Occured. Please Retry again';
-        $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <i class="mdi mdi-block-helper"></i><strong>OOPS!! </strong>'.$msg.' 
-                </div>';
-    }
-}
 
 
 ?>
@@ -174,8 +131,11 @@ if(isset($_POST['approveBtn'])) {
                                         <li>
                                             <a href="author.php">Author </a>
                                         </li>
+                                        <li>
+                                            <a href="view_author.php">Available Author </a>
+                                        </li>
                                         <li class="active">
-                                            View Author
+                                             Author Attachment
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -186,75 +146,74 @@ if(isset($_POST['approveBtn'])) {
 
                         <!-- start row of grid -->
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card-box table-responsive">
-                                    <?php echo $message; ?>
-                                    <h3>Author Paper Details</h3>
-                                   <a href="attach.php?id=<?php echo htmlentities($email);?>"> <button class="btn btn-primary" style="float: right; margin-bottom:18px; margin-right: 10px;">Attach Reviewer</button> </a>
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th>Author Name</th>
-                                            <td><?=$data['fullname']?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Author Email</th>
-                                            <td><?=$email?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Abouth Author</th>
-                                            <td><?=$data['bio']?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>About Paper</th>
-                                            <td><?=$data_fetch['about']?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Conference Title</th>
-                                            <td><?=$fetchx['conf_title']?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Reviewer Attach</th>
-                                            <td><?=$data_fetch['reviewer']?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Paper Upload</th>
-                                            <td>
-                                                <form method="post" action="">
-                                                <input type="hidden" name="title"  value="<?php echo $data_fetch['document']?>"  />
-                                                <button  class="btn btn-success" type="submit" name="read" ><i class="fa fa-book"> </i> Read</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Paper Status</th>
-                                            <td>
-                                                <?php
-                                                    if (empty($data_fetch['status'])) {
-                                                        echo '<button class ="btn btn-warning">Pending</button>';
-                                                    }
-                                                    elseif ($data_fetch['status'] ==1) {
-                                                       echo '<button class="btn btn-success">Approve</button>';
-                                                    }
-                                                    else{
-                                                      echo '<button class="btn btn-danger">Reject</button>';  
-                                                    }
+                            <div class="col-sm-12 col-xs-12 col-md-12"> 
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0">Attach Reviewer</h4>
+                                    <p class="text-muted font-13 m-b-10">
+                                               Field with  asterike<span class="required">(*)</span> must be fill
+                                            </p>
+                                            <?php
+                                                echo $message;
+
+                                                $sql = mysqli_query($con, "select * from conference_tb");
+                                                $reviwe = mysqli_query($con, "select * from user_tb where usertype ='reviewer'");
+                                                
+                                            ?>
+
+                                            <div class="p-20">
+                                                <form action="" method="post">
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="passWord2">Author Email: <span class="required">*</span></label>
+                                                        <input type="text" name="auth_email" value="<?=$email?>"  class="form-control" required disabled>
+                                                                
                                                         
-                                                ?>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <form method="post" action="">
-                                        <input type="hidden" name="reject" value="<?php echo $data_fetch['id']?>" />
-                                        <button type="submit" name="rejectBtn" onclick="return confirm('Are You sure You want to to reject')" class="btn btn-danger" style="float: right; margin-right: 8px;">Reject Paper</button>
-                                    </form>
-                                    <form method="post" action="">
-                                        <input type="hidden" name="approve" value="<?php echo $data_fetch['id']?>" />
-                                      <button type="submit" name="approveBtn" onclick="return confirm('Are You sure You want to to Approve')" class="btn btn-success" style="float: right;margin-right: 8px;">Approve Paper</button>
-                                    </form> 
-                                    
-                                    
-                                        
-                                </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="userName">Conference Title/Themes<span class="required">*</span></label>
+                                                        <select class="form-control" name="conf_id" required>
+                                                            <option value="">Select Conference Tittle</option>
+                                                            
+                                                                <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                                                                <option value="<?=$row['id'] ?>"><?= $row['conf_title'] ?></option>
+                                                            <?php } ?>
+                                                            
+                                                        </select>
+                                                        
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="passWord2">Reviewer : <span class="required">*</span></label>
+                                                        <select class="form-control" name="reviwe_email" required>
+                                                            <option value="">Select Reviewer</option>
+                                                            
+                                                                <?php while ($data_fetch = mysqli_fetch_assoc($reviwe)) {
+                                                                    $gotmail = $data_fetch['email'];
+                                                                    $checkmail = mysqli_query($con, "select * from user_profile where email = '$gotmail'");
+                                                                    while ($fetch = mysqli_fetch_assoc($checkmail)) {
+                                                                        ?>
+                                                                      <option value="<?=$fetch['email'] ?>"><?= $fetch['fullname'] ?></option>
+                                                                  
+                                                                
+                                                                
+                                                            <?php }   }?>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    
+
+                                                    <div class="form-group text-right m-b-0">
+                                                        <button class="btn btn-primary waves-effect waves-light" type="submit" name="add_attach">
+                                                            Submit
+                                                        </button>
+                                                        <a href="view_author.php">
+                                                        Back
+                                                        </a>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                </div>    
+
                             </div>
                         </div>
                         <!-- end row of grid -->
@@ -326,9 +285,9 @@ function read(){
   readfile($route);
 }
 
-function sendmail($status,$mail,$Subject,$body){
-   include("..\phpmailer-master/class.phpmailer.php");
-include("..\phpmailer-master/class.smtp.php");
+function sendmail($email,$Subject,$body){
+//    include("..\phpmailer-master/class.phpmailer.php");
+// include("..\phpmailer-master/class.smtp.php");
             $mail = new PHPMailer();
 
             $mail->IsSMTP();
@@ -341,12 +300,12 @@ include("..\phpmailer-master/class.smtp.php");
             $mail->Password   = "babatunde";            // GMAIL password
             $mail ->SetFrom('Onine Conference Management');
 
-            $mail->From     = $mail;
+            $mail->From     = 'no-reply';
             $mail->FromName   = "no-reply";
             $mail->Subject    = $Subject;
             $mail->Body    =  $body; //Text Body
             $mail->WordWrap   = 50; // set word wrap
-            $mail ->AddAddress($mail);
+            $mail ->AddAddress($email);
             // $mail->AddAttachment('images/'.$Uname.'.pdf');
             if(!$mail->Send())
             {
