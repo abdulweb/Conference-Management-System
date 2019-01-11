@@ -89,11 +89,11 @@ $user_email = $_SESSION['user'];
                                 </tr>
                                 </thead>
                                     <?php
-                                        $sql = mysqli_query($con, "select * from reviewer_author where reviewer_email ='$user_email'") or die(mysqli_error($con));
+                                        $sql = mysqli_query($con, "select * from upload_document where reviewer ='$user_email'") or die(mysqli_error($con));
                                         $counter = 1;
                                         while ($row = mysqli_fetch_assoc($sql)) {
                                           $conf_id = $row['conf_id'];
-                                          $author_email = $row['author_email'];
+                                          $author_email = $row['email'];
                                           $select = mysqli_query($con, "select * from conference_tb where id = '$conf_id'");
                                           while ($rows = mysqli_fetch_assoc($select)) {
                                            $name = mysqli_query($con, "select * from user_profile where email ='$author_email'");
@@ -106,16 +106,10 @@ $user_email = $_SESSION['user'];
                                  <tr id="row<?php echo $row['id'];?>">
                                     <td><?=$counter?></td>
                                     <td ><?=$data['fullname']?></td>
-                                    <td ><?=$row['author_email']?></td>
+                                    <td ><?=$row['email']?></td>
                                     <td><?=$rows['conf_title']?></td>
                                     <td style="padding-left: 20px;">
-                                        <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
-
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-
-                                        <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-right: 5px;"></i> </a>
-
-                                        
+                                        <a href="view_authors.php" class="btn btn-primary ">View</a>
                                     </td>
                                 </tr>
                                 </tbody>
