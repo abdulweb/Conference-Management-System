@@ -1,3 +1,8 @@
+<?php
+    include 'connection.php';
+    error_reporting(0);
+    $sql = mysqli_query($con, "select * from user_tb where usertype ='reviewer'") or die (mysqli_error($con));
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,68 +57,42 @@
                                 </div>
                             </div>
                         </div>
-
+                        
+                                    
+                               
                  <div class="row">
                      <div class="col-md-12">
                          <div class="card-box">
                             <h4 class="m-t-0 header-title"><b>Available Reviwers</b></h4>
                             <p class="text-muted m-b-30 font-13">The Listed Reviwers below are trusted and .</p>
+
+                            <?php
+                                while ($rows = mysqli_fetch_assoc($sql)) {
+                                $user_email = $rows['email'];
+                                $query = mysqli_query($con, "select * from user_profile where email = '$user_email'");
+                                while ($data = mysqli_fetch_assoc($query)) {?>
+
                              <div>
                                 <div class="media">
                                     <div class="media-left media-middle">
                                         <a href="#"> <img class="media-object img-circle" alt="64x64"
-                                                          src="images/img.jpg"
+                                                          src="<?= 'reviewer/' .$data['passport']?>"
                                                           style="width: 64px; height: 64px;"> </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Top aligned media</h4>
-                                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                            scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-                                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                            nisi vulputate fringilla. Donec lacinia congue felis in
-                                            faucibus.</p>
-                                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                                            leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                            nascetur ridiculus mus.</p>
+                                        <h4 class="media-heading"><?= $data['title'] . " " .$data['fullname']?></h4>
+                                        <p><?=$data['bio']?></p>
+                                        <p> specailize in <?=$data['field']?></p>
+                                        <p> Contact me : <?=$data['phone'] . " ".$data['social_name'] ?></p>
                                     </div>
                                 </div>
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#"> <img class="media-object img-circle" alt="64x64"
-                                                          src="images/img2.jpg"
-                                                          style="width: 64px; height: 64px;"> </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Middle aligned media</h4>
-                                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                            scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-                                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                            nisi vulputate fringilla. Donec lacinia congue felis in
-                                            faucibus.</p>
-                                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                                            leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                            nascetur ridiculus mus.</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#"> <img class="media-object img-circle" alt="64x64"
-                                                          src="images/img3.jpg"
-                                                          style="width: 64px; height: 64px;"> </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Bottom aligned media</h4>
-                                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                            scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-                                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                            nisi vulputate fringilla. Donec lacinia congue felis in
-                                            faucibus.</p>
-                                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                                            leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                            nascetur ridiculus mus.</p>
-                                    </div>
-                                </div>
+                               
                             </div>
+                            <?php
+                             }
+                            }
+
+                        ?>
                          </div>
                      </div>
                  </div>
