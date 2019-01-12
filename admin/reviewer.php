@@ -243,7 +243,7 @@ if(x< 4)
                                     <td><?=$counter?></td>
                                     <td id="title<?php echo $row['id'] ?>"><?=$rows['fullname']?></td>
                                     <td><?=$row['email']?></td>
-                                    <td id="title<?php echo $row['id'] ?>"><?=$rows['fullname']?></td>
+                                    <td id="title<?php echo $row['id'] ?>"><?=$rows['field']?></td>
                                     <td style="padding-left: 20px;">
                                     <a href=""  ><i class="fa fa-desktop"></i></a>
 
