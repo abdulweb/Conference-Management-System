@@ -51,7 +51,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <img src="images/img.jpg" class="img img-responsive img-thumbnail">
+                                                        <img src="images/ab2.jpg" class="img img-responsive img-thumbnail">
                                                     </div>
                                                 </div>
                                                 
