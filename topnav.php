@@ -4,7 +4,7 @@
                 <div class="container">
 
                     <!-- Logo container-->
-                    <div class="logo">
+                    <div class="">
                         <!-- Text Logo -->
                         <!--<a href="index.html" class="logo">-->
                             <!--Zircos-->
@@ -12,7 +12,7 @@
                         <!-- Image Logo -->
                         <a href="index.html" class="logo">
                             <!-- <img src="assets/images/logo.png" alt="" height="30"> -->
-                            <h2>CMS</h2>
+                            <h2 style="color: white;font-style: italic;margin-left: 270px;text-shadow: 1px 1px red;">ONLINE CONFERENCE MANAGEMENT SYSTEM</h2>
                         </a>
 
                     </div>
