@@ -1,6 +1,63 @@
 <?php
-    include 'connection.php';
-    error_reporting(0);
+include 'connection.php';
+session_start();
+
+$msg = $message = " ";
+if (isset($_POST['loginBtn'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if (empty($username) || empty($password)) 
+    {
+        echo "<script>alert('Username or Password Field can not be empty')</script>";
+    }
+    else
+    {
+        if ($username =='admin@admin.com' and $password =='pass3word') {
+            $_SESSION['user'] = $username;
+            $_SESSION['usertype'] = 'admin';
+            header('location:admin/index.php');
+        }
+
+        else{
+            $query = mysqli_query($con, "select * from user_tb where email ='$username' and password = '$password'");
+            if (mysqli_num_rows($query)>0) {
+                $check = mysqli_fetch_assoc($query);
+                $_SESSION['user'] = $username;
+                $_SESSION['usertype'] = $check['usertype'];
+                if ($_SESSION['usertype'] == 'author') {
+                    header('location:author/profile.php');
+                }
+                elseif ($_SESSION['usertype'] =='reviewer') {
+                     header('location:reviewer/profile.php');
+                }
+                else{
+                     $msg = ' Unauthorize User';
+                    $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <i class="mdi mdi-block-helper"></i>
+                                                        <strong>OOPS! </strong>'.$msg.' 
+                                                    </div>';
+                }
+               
+            }
+            else{
+                 $msg = ' wrong username or password';
+            $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <i class="mdi mdi-block-helper"></i>
+                                                <strong>Oh snap!</strong>'.$msg.' 
+                                            </div>';
+            }
+           
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -144,18 +201,20 @@
                                     </h4>
                                     <!-- <h4 class="text-uppercase font-bold m-b-0">Sign In</h4> -->
                                 </div>
+
                                 <div class="account-content">
-                                    <form class="form-horizontal" action="#">
+                                <?php echo $message;?>
+                                    <form class="form-horizontal" action="#" method="post">
 
                                         <div class="form-group ">
                                             <div class="col-xs-12">
-                                                <input class="form-control" type="text" required="" placeholder="Username">
+                                                <input class="form-control" type="text" name="username" required="" placeholder="Username">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="col-xs-12">
-                                                <input class="form-control" type="password" required="" placeholder="Password">
+                                                <input class="form-control" type="password" name="password" required="" placeholder="Password">
                                             </div>
                                         </div>
 
@@ -179,7 +238,7 @@
 
                                         <div class="form-group account-btn text-center m-t-10">
                                             <div class="col-xs-12">
-                                                <button class="btn w-md btn-bordered btn-danger waves-effect waves-light" type="submit">Log In</button>
+                                                <button class="btn w-md btn-bordered btn-danger waves-effect waves-light" name="loginBtn" type="submit">Log In</button>
                                             </div>
                                         </div>
 
@@ -194,7 +253,7 @@
 
                             <div class="row m-t-20">
                                 <div class="col-sm-12 text-center">
-                                    <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+                                    <p class="text-muted">Don't have an account? <a href="register.php" class="text-primary m-l-5"><b>Sign Up</b></a></p>
                                 </div>
                             </div>
 

@@ -26,7 +26,14 @@
         <script src="assets/js/modernizr.min.js"></script>
 
     </head>
-
+     <style type="text/css">
+        label{
+           color: black; 
+        }
+        .required{
+            color: red;
+        }
+    </style>
 
     <body >
 
@@ -37,80 +44,70 @@
         <div class="wrapper">
             <div class="container">
                     
-                 <section>
-            <div class="container-alt">
-                <div class="row">
-                    <div class="col-sm-12">
+                 <div class="row">
+                            <div class="col-sm-12 col-xs-12 col-md-12"> 
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0">Participant Registration</h4>
+                                    <p class="text-muted font-13 m-b-10">
+                                               Field with  asterike<span class="required">(*)</span> must be fill
+                                            </p>
+                                            <?php
+                                                //echo $message;
 
-                        <div class="wrapper-page">
+                                                //$sql = mysqli_query($con, "select * from conference_tb");
+                                            ?>
 
-                            <div class="m-t-40 account-pages">
-                                <div class="text-center account-logo-box">
-                                    <h2 class="text-uppercase">
-                                        <a href="#" class="text-white">
-                                            <span>Create Account</span>
-                                        </a>
-                                    </h2>
-                                    <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
-                                </div>
-                                <div class="account-content">
-                                    <form class="form-horizontal" action="#">
+                                            <div class="p-20">
+                                                <form action="" method="post" name="addemp">
+                                                    
+                                                    
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="passWord2">Email: <span class="required">*</span></label>
+                                                        <input type="email" name="email" parsley-trigger="change" required
+                                                                class="form-control" id="">
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="userName">Username<span class="required">*</span></label>
+                                                        <input type="text" name="username" parsley-trigger="change" required
+                                                                class="form-control" id="">    
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="userName">password<span class="required">*</span></label>
+                                                        <input type="password" name="password" id="password" parsley-trigger="change" required
+                                                                class="form-control" id="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="userName">confrim Password<span class="required">*</span></label>
+                                                        <input type="password" name="confirmpassword" parsley-trigger="change" required
+                                                                class="form-control" id="">
+                                                    </div>
+                                                   <div class="form-group">
+                                                        <label for="userName">Registration type<span class="required">*</span></label>
+                                                        <select class="form-control" name="title" required>
+                                                            <option value="">select Registration type</option>
+                                                            <option>Author</option>
+                                                            <option>Reviewer</option>
+                                                        </select>
+                                                    </div>
 
-                                        <div class="form-group ">
-                                            <div class="col-xs-12">
-                                                <input class="form-control" type="email" required="" placeholder="Email">
+                                                    <div class="form-group text-right m-b-0">
+                                                        <button class="btn btn-primary waves-effect waves-light" type="submit" name="regsiter" onclick="return valid();">
+                                                            Submit
+                                                        </button>
+                                                        <button type="reset" class="btn btn-default waves-effect m-l-5">
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+
+                                                </form>
                                             </div>
-                                        </div>
+                                </div>    
 
-                                        <div class="form-group ">
-                                            <div class="col-xs-12">
-                                                <input class="form-control" type="text" required="" placeholder="Username">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-xs-12">
-                                                <input class="form-control" type="password" required="" placeholder="Password">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-xs-12">
-                                                <div class="checkbox checkbox-success">
-                                                    <input id="checkbox-signup" type="checkbox" checked="checked">
-                                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group account-btn text-center m-t-10">
-                                            <div class="col-xs-12">
-                                                <button class="btn w-md btn-danger btn-bordered waves-effect waves-light" type="submit">Register</button>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
-                                    <div class="clearfix"></div>
-
-                                </div>
                             </div>
-                            <!-- end card-box-->
-
-
-                            <div class="row m-t-50">
-                                <div class="col-sm-12 text-center">
-                                    <p class="text-muted">Already have account?<a href="login.php" class="text-primary m-l-5"><b>Sign In</b></a></p>
-                                </div>
-                            </div>
-
                         </div>
-                        <!-- end wrapper -->
-
-                    </div>
-                </div>
-            </div>
-          </section>
 
                 
             <!-- footer section -->
