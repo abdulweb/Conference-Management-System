@@ -89,7 +89,10 @@
                                     </ul>
                                 </li>
                                 <li class="has_sub">
-                                    <a href="profile.php" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Profile </span> </a>
+                                    <a href="conference.php" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span>  conferences </span> </a>
+                                </li>
+                                <li class="has_sub">
+                                    <a href="profile.php" class="waves-effect"><i class="mdi mdi-account-settings-variant"></i> <span> Profile </span> </a>
                                 </li>
                             
                             <?php
