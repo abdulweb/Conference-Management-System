@@ -22,5 +22,9 @@
         <link href="../plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
         <link href="../plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
         <link href="../plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+         <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
 
         <script src="..\admin/assets/js/modernizr.min.js"></script>
+
+       
