@@ -87,9 +87,13 @@
                                         <li><a href="upload.php">Upload Paper</a></li>
                                         <li><a href="myPaper.php">My Papers</a></li>
                                     </ul>
-                                </li>
+                               
                                 <li class="has_sub">
-                                    <a href="conference.php" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span>  conferences </span> </a>
+                                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> conferences</span> <span class="menu-arrow"></span></a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="conference.php">All conference</a></li>
+                                        <li><a href="myconference.php">My conference</a></li>
+                                    </ul>
                                 </li>
                                 <li class="has_sub">
                                     <a href="profile.php" class="waves-effect"><i class="mdi mdi-account-settings-variant"></i> <span> Profile </span> </a>
