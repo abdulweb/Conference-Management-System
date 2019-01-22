@@ -1,6 +1,7 @@
 <?php
  error_reporting(0);
 include '..\admin/includes/connection.php';
+$_SESSION['message'] ='';
 session_start();
 if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == null) {
     header('location:../index.php');
@@ -74,6 +75,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                         <!-- start row of grid -->
                       <div class="row">
                       <?php
+                      echo $_SESSION['message'];
                          $sql = mysqli_query($con, "SELECT * FROM conference_tb ORDER BY id DESC");
                          if (mysqli_num_rows($sql) > 0) {
                              while ($row = mysqli_fetch_assoc($sql)) {
@@ -111,7 +113,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                             <a href="#" target="new_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="2 Parking space"><i class="mdi mdi-car"></i><span>2</span></a>
                                             <a href="#" target="new_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="24h Electricity"><i class="mdi mdi-battery-charging-80"></i><span> 24H</span></a>
                                             <div class="pull-right">
-                                                <a href="login.php" class="btn btn-success btn-rounded"><i class="mdi mdi-account-check"></i><span>Attend</span></a>
+                                                <a href="conf-register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-success btn-rounded"><i class="mdi mdi-account-check"></i><span>Register</span></a>
                                             </div>
                                         </div>
                                         <!-- end. Card actions -->
@@ -166,6 +168,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 
         <?php
         include 'js.php';
+        unset($_SESSION['message']);
         ?>
     </body>
 </html>
