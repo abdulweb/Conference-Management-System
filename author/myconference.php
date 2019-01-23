@@ -80,7 +80,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                             <div class="col-sm-12">
                         <div class="card-box table-responsive">
                            <div class="panel panel-primary">
-                               <div class="panel-heading"> <i class="fa fa-desktop"> </i> <strong>List of REgistered conferences </strong></div>
+                               <div class="panel-heading"> <i class="fa fa-desktop"> </i> <strong>List of Registered conferences </strong></div>
                                <div class="panel-body">
                                     <h4 class="m-t-0 header-title"><b></b></h4>
                             <p class="text-muted font-13 m-b-30">
