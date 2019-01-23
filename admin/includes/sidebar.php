@@ -20,9 +20,7 @@
 
                         <div class="dropdown" id="setting-dropdown">
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0)"><i class="mdi mdi-face-profile m-r-5"></i> Profile</a></li>
-                                <li><a href="javascript:void(0)"><i class="mdi mdi-account-settings-variant m-r-5"></i> Settings</a></li>
-                                <li><a href="javascript:void(0)"><i class="mdi mdi-lock m-r-5"></i> Lock screen</a></li>
+                                
                                 <li><a href="..\index.php"><i class="mdi mdi-logout m-r-5"></i> Logout</a></li>
                             </ul>
                         </div>
