@@ -83,7 +83,8 @@
                                         <h4 class="media-heading"><?= $data['title'] . " " .$data['fullname']?></h4>
                                         <p><?=$data['bio']?></p>
                                         <p> specailize in <?=$data['field']?></p>
-                                        <p> Contact me : <?=$data['phone'] . " ".$data['social_name'] ?></p>
+                                        <p> Contact me : <?=$data['phone'] ?> </p>
+                                        <a class="mdi mdi-facebook-box" href="" style="font-size: 22px;"> <?=$data['social_name']?> </a>
                                     </div>
                                 </div>
                                
