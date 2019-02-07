@@ -19,10 +19,13 @@ if (isset($_POST['add_profile'])) {
                    </div>';
     }
     else{
-                $target_dir = "uploads/";
-                $target_file = $target_dir . basename($_FILES["passport"]["name"]);
-                $uploadOk = 1;
-                $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["passport"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $numrow = mysqli_num_rows(mysqli_query($con,"select * from user_profile where email  ='$user_email'"));
+            if ($numrow >0) 
+            {
                 // Check if image file is a actual image or fake image
                     $check = getimagesize($_FILES["passport"]["tmp_name"]);
                     if($check !== false) {
@@ -37,66 +40,67 @@ if (isset($_POST['add_profile'])) {
                                         </div>';
                         $uploadOk = 0;
                     }
-                    if (file_exists($target_file)) {
+                    if (file_exists($target_file) ) 
+                    {
                         // update into database
-                    $insert = mysqli_query($con, "UPDATE user_profile set email = '$user_email',title = '$title',fullname = '$fullname',phone = '$phone',bio='$bio',passport = '$target_file' where email='$user_email'") or die(mysqli_error($con));
-                    if ($insert) {
-                       $msg = ' Profile Updated Successfully';
-                     $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
-                                </div>';
-                    }
-                    else{
-                        $msg = ' Error Occure. Please Retry';
-                     $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-                                </div>';
+                        $insert = mysqli_query($con, "UPDATE user_profile set email = '$user_email',title = '$title',fullname = '$fullname',phone = '$phone',bio='$bio',passport = '$target_file' where email='$user_email'") or die(mysqli_error($con));
+                        if ($insert) {
+                           $msg = ' Profile Updated Successfully';
+                         $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
+                                    </div>';
                         }
+                        else{
+                            $msg = ' Error Occure. Please Retry';
+                         $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                    </div>';
+                            }
+
 
                     }
+                    //
                     else
-                     {
-
-
-                      // Check file size
-                          if ($_FILES["passport"]["size"] > 5000000) 
-                          {
+                    {
+                            if ($_FILES["passport"]["size"] > 5000000) 
+                            {
                               $msg = "Sorry, your file is too large. Must not be more than 5MB";
                               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
                                         </div>';
                               $uploadOk = 0;
-                          }
-                          // Allow certain file formats
-                          if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                            && $imageFileType != "gif" ) 
-                          {
+                            }
+                              // Allow certain file formats
+                            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                                && $imageFileType != "gif" ) 
+                            {
                               $msg =  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
                                         </div>';
                               $uploadOk = 0;
-                          }
-                        // Check if $uploadOk is set to 0 by an error
-                          if ($uploadOk == 0) 
-                          {
+                            }
+                            // Check if $uploadOk is set to 0 by an error
+                             if ($uploadOk == 0) 
+                            {
                               $msg =  "Sorry, your file was not uploaded. Please retry";
                               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
                                         </div>';
 
-                          // if everything is ok, try to upload file
-                          } 
-                          else {
+                              // if everything is ok, try to upload file
+                            } 
+                          else 
+                          {
                             if (move_uploaded_file($_FILES["passport"]["tmp_name"], $target_file)) 
                             {
                                 // insert into database
-                               $insert = mysqli_query($con, "INSERT into user_profile(email,title,fullname,phone,bio,passport) values('$user_email','$title','$fullname','$phone','$bio','$target_file')") or die(mysqli_error($con));
+                               $insert = mysqli_query($con, "UPDATE user_profile set email = '$user_email',title = '$title',fullname = '$fullname',phone = '$phone',bio='$bio',passport = '$target_file' where email='$user_email'") or die(mysqli_error($con));
                                 if ($insert) {
                                    $msg = ' Profile Updated Successfully';
                                  $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
@@ -112,15 +116,84 @@ if (isset($_POST['add_profile'])) {
                                             </div>';
                                 }
 
-                                } else {
+                                } 
+                                else
+                                 {
                                     $msg =  "Sorry, there was an error uploading your file.";
                                     $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
                                             </div>';
-                                }
-                            }
+                                 }
                     }
+                }
+            }
+
+            else
+             {
+
+
+              // Check file size
+                  if ($_FILES["passport"]["size"] > 5000000) 
+                  {
+                      $msg = "Sorry, your file is too large. Must not be more than 5MB";
+                      $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                </div>';
+                      $uploadOk = 0;
+                  }
+                  // Allow certain file formats
+                  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif" ) 
+                  {
+                      $msg =  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                      $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                </div>';
+                      $uploadOk = 0;
+                  }
+                // Check if $uploadOk is set to 0 by an error
+                  if ($uploadOk == 0) 
+                  {
+                      $msg =  "Sorry, your file was not uploaded. Please retry";
+                      $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                </div>';
+
+                  // if everything is ok, try to upload file
+                  } 
+                  else {
+                    if (move_uploaded_file($_FILES["passport"]["tmp_name"], $target_file)) 
+                    {
+                        // insert into database
+                       $insert = mysqli_query($con, "INSERT into user_profile(email,title,fullname,phone,bio,passport) values('$user_email','$title','$fullname','$phone','$bio','$target_file')") or die(mysqli_error($con));
+                        if ($insert) {
+                           $msg = ' Profile Updated Successfully';
+                         $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
+                                    </div>';
+                        }
+                        else{
+                            $msg = ' Error Occure. Please Retry';
+                         $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                    </div>';
+                        }
+
+                        } else {
+                            $msg =  "Sorry, there was an error uploading your file.";
+                            $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                    </div>';
+                        }
+                    }
+            }
     }
 }
 
