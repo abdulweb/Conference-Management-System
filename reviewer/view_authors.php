@@ -143,7 +143,7 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                                 <?=$rows['about'];?>
                                             </p>
                                             <footer>
-                                                 <cite title="Source Title"><?php echo 'author email' ." ".$get_email ?></cite>
+                                                 <cite title="Source Title"><?php echo 'by' ." ".$get_email ?></cite>
                                             </footer>
                                         </blockquote>
 
@@ -176,7 +176,7 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                                      echo '<button class="btn btn-warning">Pending</button>';
                                                  }
                                                  elseif ($rows['status']==1) {
-                                                     echo '<button class="btn btn-success">Approve</button>';
+                                                     echo '<button class="btn btn-success">Approved</button>';
                                                  }
                                                  else{
                                                     echo '<button class="btn btn-danger">Rejected</button>';

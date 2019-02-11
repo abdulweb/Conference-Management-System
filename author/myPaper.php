@@ -130,11 +130,11 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                         ?>
                                     </td>
                                     <td style="padding-left: 20px;">
-                                        <a href="paper_review.php?id=<?php echo htmlentities($row['id']);?>"  class="on-editing save" onclick="alert('<?php echo $row['id'];?>');"><i class="fa fa-desktop"></i></a>
+                                        <a href="paper_review.php?id=<?php echo htmlentities($row['id']);?>"  class="on-editing save" onclick="alert('<?php echo $row['id'];?>');"><i class="fa fa-desktop" style="font-size: 20px;"></i></a>
 
                                         <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
 
-                                        <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-trash" style="margin-left: 5px;"></i> </a>
+                                        <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-trash" style="margin-left: 10px; font-size: 20px;"></i> </a>
 
                                         
                                     </td>

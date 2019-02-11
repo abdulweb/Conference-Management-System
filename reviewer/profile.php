@@ -191,9 +191,11 @@ $socx = $fetch['social_name'];
                                 <div class="page-title-box">
                                     <h4 class="page-title">Dashboard </h4>
                                     <ol class="breadcrumb p-0 m-0">
-                                        
+                                        <li>
+                                            <a href=index.php>Dashboard</a>
+                                        </li>
                                         <li class="active">
-                                           Dashboard
+                                           Profile
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
