@@ -195,17 +195,32 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                         while ($getrow = mysqli_fetch_assoc($sql)) {
                                             $commentby = $getrow['comment_by'];
                                             $img_query = mysqli_query($con, "select * from user_profile where email = '$commentby'") or die(mysqli_error($con));
+                                            $select_type = mysqli_query($con, "select * from user_tb where email = '$commentby'") or die(mysqli_error($con));
                                             while ($img_chk = mysqli_fetch_assoc($img_query)) {
-                                                $img = $img_chk['passport'];
+                                                
                                                 //var_dump($img);
+                                                while ($user_type = mysqli_fetch_assoc($select_type)) {
+                                                    $img = $img_chk['passport'];
+                                                    $usertype = $user_type['usertype'];
+                                               
                                             ?>
 
                                     <ul class="media-list">
 
                                         <li class="media">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object img-circle"
-                                                     src="<?php echo '..\reviewer/'.$img_chk['passport']?>" alt="user image">
+                                                <?php
+                                                    if($usertype == 'reviewer'){?>
+                                                        <img class="media-object img-circle" src="<?php echo '..\reviewer/'.$img_chk['passport']?>" alt="user image">
+                                                   <?php 
+                                               }
+                                               else
+                                               {?>
+                                                    <img class="media-object img-circle" src="<?php echo $img_chk['passport']?>" alt="user image">
+                                              <?php }
+
+                                                 ?>
+                                                
                                             </a>
                                             <div class="media-body">
                                                 <h5 class="media-heading"><?=$img_chk['fullname']?></h5>
@@ -219,7 +234,8 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                        
                                     </ul>
 
-                                      <?php  } 
+                                      <?php  }  
+                                        }
                                     }
                                     ?>                                    
                                     <h4 class="text-uppercase m-t-50">Leave a comment</h4>
