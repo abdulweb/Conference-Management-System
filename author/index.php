@@ -55,12 +55,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                 <div class="page-title-box">
                                     <h4 class="page-title">Dashboard </h4>
                                     <ol class="breadcrumb p-0 m-0">
-                                        <li>
-                                            <a href="#">Zircos</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Pages </a>
-                                        </li>
+                                        
                                         <li class="active">
                                             Blank Page
                                         </li>
