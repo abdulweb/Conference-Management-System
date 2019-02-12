@@ -84,7 +84,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <i class="mdi mdi-chart-areaspline widget-two-icon"></i>
                                     <div class="wigdet-two-content text-white">
                                         <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">No of Comment</p>
-                                        <h2 class="text-white"><span data-plugin="counterup"><?= mysqli_num_rows(mysqli_query($con,"select * from conference_reg_tb where user_email = '".$_SESSION['user']."'")) ?></span> <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+                                        <h2 class="text-white"><span data-plugin="counterup"><?= mysqli_num_rows(mysqli_query($con,"select * from comment_tb where comment_by = '".$_SESSION['user']."'")) ?></span> <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
                                         
                                     </div>
                                 </div>
