@@ -12,7 +12,7 @@ else{
     $select_row = mysqli_fetch_assoc($select_query);
     $end_date = $select_row['conf_date'];
 
-    $select = mysqli_query($con, "select * from conference_reg_tb where conf_id ='$get_id'");
+    $select = mysqli_query($con, "SELECT * from conference_reg_tb where conf_id ='$get_id' and user_email = '$user_email'");
     if(mysqli_num_rows($select)> 0)
     {
           $msg = ' Sorry You have register for this conference';

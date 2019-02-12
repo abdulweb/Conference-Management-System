@@ -6,6 +6,7 @@ session_start();
 if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == null) {
     header('location:../index.php');
 }
+$user_email = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,6 +81,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                          if (mysqli_num_rows($sql) > 0) {
                              while ($row = mysqli_fetch_assoc($sql)) {
                                 $image_back = $row['conf_image'];
+                                $conf_id = $row['id'];
                                // echo "<script>alert('$image_back')</script>";
                      ?>
                             <div class="property-card property-horizontal" style="height: auto;">
@@ -113,7 +115,22 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                             <a href="#" target="new_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="2 Parking space"><i class="mdi mdi-car"></i><span>2</span></a>
                                             <a href="#" target="new_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="24h Electricity"><i class="mdi mdi-battery-charging-80"></i><span> 24H</span></a>
                                             <div class="pull-right">
-                                                <a href="conf-register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-success btn-rounded"><i class="mdi mdi-account-check"></i><span>Register</span></a>
+                                            <?php 
+                                                $check = mysqli_query($con, "select * from conference_reg_tb where conf_id ='$conf_id' and user_email ='$user_email' ");
+                                                if (mysqli_num_rows($check) > 0) 
+                                                    {
+                                                        ?>
+                                                     <a href="conf-un_register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-danger btn-rounded" onclick="return confirm('Wont Attend again?');"><i class="mdi mdi-account-remove" ></i><span>Not Attend</span></a>
+                                                   <?php 
+                                                    }
+                                                    else
+                                                        {?>
+                                                        <a href="conf-register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-success btn-rounded" onclick="return confirm('Ready to Register?');"><i class="mdi mdi-account-check"></i><span>Register</span></a>
+                                                   <?php 
+                                                    }
+
+                                            ?>
+                                                
                                             </div>
                                         </div>
                                         <!-- end. Card actions -->

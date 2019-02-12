@@ -8,12 +8,12 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 
 $get_email = $_SESSION['user'];
 $get_cof = mysqli_query($con, "select * from conference_reg_tb where user_email = '$get_email'");
-$fetch_conf = mysqli_fetch_assoc($get_cof);
-$conf_id = $fetch_conf['conf_id'];
+// $fetch_conf = mysqli_fetch_assoc($get_cof);
+// $conf_id = $fetch_conf['conf_id'];
 
 if (isset($_POST['upload'])) {
     $about = $_POST['about'];
-    $conf_id = $conf_id;
+    $conf_id = $_POST['title'];
     if (empty($about)) {
         $msg = ' All field with asterik must be field';
          $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
@@ -190,9 +190,9 @@ if (isset($_POST['upload'])) {
                                             <?php
                                                 echo $message;
 
-                                                $sql = mysqli_query($con, "select * from conference_tb where id ='$conf_id'");
-                                                $row = mysqli_fetch_assoc($sql);
-                                                $conf_title = $row['conf_title'];
+                                                // $sql = mysqli_query($con, "select * from conference_tb where id ='$conf_id'");
+                                                // $row = mysqli_fetch_assoc($sql);
+                                                // $conf_title = $row['conf_title'];
                                             ?>
 
                                             <div class="p-20">
@@ -200,7 +200,16 @@ if (isset($_POST['upload'])) {
                                                     
                                                     <div class="form-group">
                                                         <label for="userName">Conference Title/Themes</label>
-                                                        <input class="form-control" name="title" value="<?=$conf_title?>" disabled />
+                                                        <select class="form-control" name="title" required>
+                                                        <option value="">Select Conference</option>
+                                                        <?php
+                                                          while ($fetch_conf = mysqli_fetch_assoc($get_cof)) {?>
+                                                            <option value="<?=$fetch_conf['$conf_id']?>"> <?=$fetch_conf['conf_title']?></option>
+                                                          <?php
+                                                        }
+                                                        ?>
+                                                        </select>
+
                                                         
                                                     </div>
                                                     <div class="form-group">
