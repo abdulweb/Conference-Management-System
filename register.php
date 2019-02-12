@@ -1,3 +1,41 @@
+<?php
+    include 'connection.php';
+    error_reporting(0);
+    $msg = $message = '';
+    if (isset($_POST['regsiter'])) {
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $confirmpassword = $_POST['confirmpassword'];
+        $usertype = $_POST['usertype'];
+        $date = date('Y-m-d');
+        if (empty($email) || empty($usertype) || empty($username) || empty($password) || empty($confirmpassword)) {
+            $msg = 'All field is required';
+            $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>  <i class="mdi mdi-block-helper"></i> <strong>OOPS! </strong>'.$msg.'  </div>';
+        }
+        else{
+            $check = mysqli_query($con, "SELECT * FROM user_tb where email = '$email'");
+            if (mysqli_num_rows($check)>0) 
+            {
+                $msg = 'User Already Exist. Kindly login to register for conference';
+            }
+            else
+            {
+                $insert = mysqli_query($con, "INSERT INTO user_tb(email,username,password,usertype,date_create) VALUES('$email','$username','$password','$usertype','$date')") or mysqli_error($con);
+                if ($insert) {
+                    $msg = 'Registration Successfully';
+                     $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>  <i class="mdi mdi-block-helper"></i> <strong>Congratulation!!! </strong>'.$msg.'  </div>';
+                }
+                else{
+                    $msg = 'Error Occur Please Retry';
+                    $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>  <i class="mdi mdi-block-helper"></i> <strong>OOPS! </strong>'.$msg.'  </div>';
+                }
+            }
+        }
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,6 +72,23 @@
             color: red;
         }
     </style>
+    <script type="text/javascript">
+        function valid()
+{
+if(document.addemp.password.value!= document.addemp.confirmpassword.value)
+{
+alert(" Password and Confirm Password does not match  !!");
+document.addemp.confirmpassword.focus();
+return false;
+}
+var x = $('#password').val().length;
+if(x< 8){
+    alert("Passwords must be More than eight character.");
+    return false;
+}
+
+}
+    </script>
 
     <body >
 
@@ -52,9 +107,7 @@
                                                Field with  asterike<span class="required">(*)</span> must be fill
                                             </p>
                                             <?php
-                                                //echo $message;
-
-                                                //$sql = mysqli_query($con, "select * from conference_tb");
+                                                echo $message;
                                             ?>
 
                                             <div class="p-20">
@@ -86,10 +139,11 @@
                                                     </div>
                                                    <div class="form-group">
                                                         <label for="userName">Registration type<span class="required">*</span></label>
-                                                        <select class="form-control" name="title" required>
+                                                        <select class="form-control" name="usertype" required>
                                                             <option value="">select Registration type</option>
-                                                            <option>Author</option>
-                                                            <option>Reviewer</option>
+                                                             <option value="participant">Participant</option>
+                                                            <option value="author">Author</option>
+                                                            <option value="reviewer">Reviewer</option>
                                                         </select>
                                                     </div>
 
