@@ -11,6 +11,7 @@ $select = mysqli_query($con, "select * from upload_document where id = '$get'");
 $rows = mysqli_fetch_assoc($select);
 
 $conf_id = $rows['conf_id'];
+$conf_document = $rows['document'];
 //echo $conf_id;
 $query = mysqli_query($con, "select * from conference_tb where id ='$conf_id'") or die(mysqli_error($con));
 $fetch = mysqli_fetch_assoc($query);
@@ -118,7 +119,7 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                         <div class="panel-heading">
                                             <div class="panel-body">
                                                 
-                                               <iframe src = "..\ViewerJS/cmp409.pdf" width='800' height='300' allowfullscreen webkitallowfullscreen></iframe>
+                                               <iframe src = "..\admin/uploads/ViewerJS/Zeenat Project.docx" width='800' height='300' allowfullscreen webkitallowfullscreen></iframe>
                                             
                                             </div>
                                         </div>

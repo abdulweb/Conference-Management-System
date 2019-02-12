@@ -111,7 +111,12 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                  <tr >
                                     <td><?=$counter?></td>
                                     <td ><?=$rows['conf_title']?></td>
-                                    <td ><button class="btn btn-warning  btn-xs">VIEW</button> </td>
+                                    <td >
+                                    <form action="read" method="get">
+                                        <input type="hidden" name="get_read" value="<?=$row['id']?>">
+                                       <button class="btn btn-warning  btn-xs" type="submit" >VIEW</button>  
+                                    </form>
+                                    </td>
                                     <td >
                                         <?=mysqli_num_rows(mysqli_query($con, "SELECT * from upload_document where email = '$user_email' and reviewer <> ''"));?>
                                     </td>

@@ -190,7 +190,7 @@ if (isset($_POST['upload'])) {
                                             <?php
                                                 echo $message;
 
-                                                // $sql = mysqli_query($con, "select * from conference_tb where id ='$conf_id'");
+                                                
                                                 // $row = mysqli_fetch_assoc($sql);
                                                 // $conf_title = $row['conf_title'];
                                             ?>
@@ -203,10 +203,18 @@ if (isset($_POST['upload'])) {
                                                         <select class="form-control" name="title" required>
                                                         <option value="">Select Conference</option>
                                                         <?php
-                                                          while ($fetch_conf = mysqli_fetch_assoc($get_cof)) {?>
-                                                            <option value="<?=$fetch_conf['$conf_id']?>"> <?=$fetch_conf['conf_title']?></option>
+                                                          while ($fetch_conf = mysqli_fetch_assoc($get_cof)) {
+                                                            $conf_id_get = $fetch_conf['conf_id'];
+                                                             $sql = mysqli_query($con, "select * from conference_tb where id ='$conf_id_get'");
+                                                             while ($rows = mysqli_fetch_assoc($sql)) {
+                                                                $conf_title = $rows['conf_title'];
+                                                                $real_id = $rows['id'];
+                                                            
+                                                            ?>
+                                                            <option value="<?=$rows['id']?>"> <?=$rows['conf_title']?></option>
                                                           <?php
-                                                        }
+                                                        } 
+                                                      }
                                                         ?>
                                                         </select>
 
