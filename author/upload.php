@@ -36,9 +36,9 @@ if (isset($_POST['upload'])) {
                               $uploadOk = 0;
                           }
                           // Allow certain file formats
-                          if($imageFileType != "docx" && $imageFileType != "pdf" ) 
+                          if($imageFileType != "pdf" ) 
                           {
-                              $msg =  "Sorry, only docx and pdf files are allowed.";
+                              $msg =  " Sorry, only pdf format is allowed.";
                               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
@@ -185,7 +185,7 @@ if (isset($_POST['upload'])) {
                                 <div class="card-box">
                                     <h4 class="header-title m-t-0">Upload Paper</h4>
                                     <p class="text-danger font-13 m-b-10">
-                                               Document allow are .docx, .pdf
+                                               Document allow is .pdf format only
                                             </p>
                                             <?php
                                                 echo $message;
