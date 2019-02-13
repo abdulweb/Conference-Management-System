@@ -112,7 +112,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <td><?=$counter?></td>
                                     <td ><?=$rows['conf_title']?></td>
                                     <td >
-                                    <form action="read" method="get">
+                                    <form action="read_document.php" method="get">
                                         <input type="hidden" name="get_read" value="<?=$row['id']?>">
                                        <button class="btn btn-warning  btn-xs" type="submit" >VIEW</button>  
                                     </form>
