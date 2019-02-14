@@ -219,9 +219,13 @@ if(isset($_POST['approveBtn'])) {
                                         <tr>
                                             <th>Paper Upload</th>
                                             <td>
-                                                <form method="post" action="">
+                                               <!--  <form method="post" action="">
                                                 <input type="hidden" name="title"  value="<?php echo $data_fetch['document']?>"  />
                                                 <button  class="btn btn-success" type="submit" name="read" ><i class="fa fa-book"> </i> Read</button>
+                                                </form> -->
+                                                <form action="read_document.php" method="get">
+                                                    <input type="hidden" name="get_read" value="<?=$data_fetch['id']?>">
+                                                    <button class="btn btn-warning  btn-xs" type="submit" >VIEW</button>  
                                                 </form>
                                             </td>
                                         </tr>
