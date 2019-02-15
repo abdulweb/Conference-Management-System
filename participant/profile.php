@@ -49,15 +49,49 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                         <div class="col-md-12">
                              <div class="property-card property-horizontal" style="height: auto; margin-top: 40px;">
                             <div class="row">
-                                <!-- <div class="col-sm-4">
-                                    <div class="property-image" style="background: url('<?= 'admin/'.$image_back;?>') center center / cover no-repeat;">
-                                        <span class="property-label label label-warning">Conference image</span>
-                                    </div>
-                                </div> -->
-                                <!-- /col 4 -->
+                                
                                 <div class="col-sm-10">
                                     <div class="property-content" style="height: auto; ">
-                                       <h3>welcome <?=$_SESSION['user']?></h3>
+                                    
+                                        <div class="card-box">
+                                    <h4 class="header-title m-t-0">Participant Registration</h4>
+                                    <p class="text-muted font-13 m-b-10">
+                                               Field with  asterike<span class="required">(*)</span> must be fill
+                                            </p>
+                                            <?php
+                                                echo $message;
+                                            ?>
+
+                                            <div class="p-20">
+                                                <form action="" method="post" name="addemp">
+                                                
+                                                    <div class="form-group">
+                                                        <label for="passWord2">Full Name: <span class="required">*</span></label>
+                                                        <input type="text" name="fname" parsley-trigger="change" required
+                                                                class="form-control" id="">
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="userName">Mobile Number<span class="required">*</span></label>
+                                                        <input type="number" name="mobile" parsley-trigger="change" required
+                                                                class="form-control" id="">    
+                                                    </div>
+                                                    
+
+                                                    <div class="form-group text-right m-b-0">
+                                                        <button class="btn btn-primary waves-effect waves-light" type="submit" name="regsiter" onclick="return valid();">
+                                                            Submit
+                                                        </button>
+                                                        <button type="reset" class="btn btn-default waves-effect m-l-5">
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                </div>
+
                                     </div>
                                 </div>
                                 <!-- /col 8 -->
