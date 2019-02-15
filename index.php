@@ -1,6 +1,7 @@
 <?php
 include 'connection.php';
 session_start();
+$_SESSION['user'] = $_SESSION['usertype'] = '';
 
 $msg = $message = " ";
 if (isset($_POST['loginBtn'])) {
@@ -29,6 +30,9 @@ if (isset($_POST['loginBtn'])) {
                 }
                 elseif ($_SESSION['usertype'] =='reviewer') {
                      header('location:reviewer/profile.php');
+                }
+                elseif ($_SESSION['usertype'] == 'Participant') {
+                     header('location:participant/index.php');
                 }
                 else{
                      $msg = ' Unauthorize User';

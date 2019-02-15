@@ -3,7 +3,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 text-center">
-                                Designed and developed by Abdullahi Mustapha - 1620310107 &copy <?= date('Y')?>. <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#con-close-modal">Developer</button>
+                                Designed and developed by Abdullahi Mustapha - 162031001 &copy <?= date('Y')?>. <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#con-close-modal">Developer</button>
                             </div>
                         </div>
                         <!--modal section-->
@@ -51,7 +51,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <img src="../images/ab2.jpg" class="img img-responsive img-thumbnail">
+                                                        <img src="images/ab2.jpg" class="img img-responsive img-thumbnail">
                                                     </div>
                                                 </div>
                                                 

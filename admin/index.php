@@ -15,7 +15,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Zircos - Responsive Admin Dashboard Template</title>
+        <title>Conference Management System</title>
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
