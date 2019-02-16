@@ -34,7 +34,14 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 
 
     </head>
-
+    <style type="text/css">
+        label{
+           color: black; 
+        }
+        .required{
+            color: red;
+        }
+    </style>
 
     <body>
 
@@ -50,22 +57,28 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                              <div class="property-card property-horizontal" style="height: auto; margin-top: 40px;">
                             <div class="row">
                                 
-                                <div class="col-sm-10">
+                                <div class="col-sm-12">
                                     <div class="property-content" style="height: auto; ">
                                     
                                         <div class="card-box">
                                     <h4 class="header-title m-t-0">Participant Registration</h4>
-                                    <p class="text-muted font-13 m-b-10">
-                                               Field with  asterike<span class="required">(*)</span> must be fill
-                                            </p>
+                                    
                                             <?php
-                                                echo $message;
+                                               // echo $message;
                                             ?>
-
-                                            <div class="p-20">
+                                            <div class="row">
+                                                <div class="p-20 col-md-6" >
                                                 <form action="" method="post" name="addemp">
                                                 
-                                                    <div class="form-group">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <p class="text-white font-weight-bold font-13 m-b-10">
+                                                               Field with  asterike<span class="required">(*)</span> must be fill
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
                                                         <label for="passWord2">Full Name: <span class="required">*</span></label>
                                                         <input type="text" name="fname" parsley-trigger="change" required
                                                                 class="form-control" id="">
@@ -77,19 +90,43 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                                         <input type="number" name="mobile" parsley-trigger="change" required
                                                                 class="form-control" id="">    
                                                     </div>
-                                                    
 
                                                     <div class="form-group text-right m-b-0">
                                                         <button class="btn btn-primary waves-effect waves-light" type="submit" name="regsiter" onclick="return valid();">
                                                             Submit
                                                         </button>
-                                                        <button type="reset" class="btn btn-default waves-effect m-l-5">
-                                                            Cancel
-                                                        </button>
+                                                    </div>
+                                                        </div>
                                                     </div>
 
                                                 </form>
                                             </div>
+                                            <div class="col-md-6">
+                                                 <div class="panel panel-success" style="margin-top: 24px;">
+                                                     <div class="panel-heading">
+                                                         <p class="text-white">Change Password</p>
+                                                     </div>
+                                                     <div class="panel-body">
+                                                         <form method="post" action="">
+                                                     <div class="form-group">
+                                                        <label for="userName">Password<span class="required">*</span></label>
+                                                        <input type="password" name="password" parsley-trigger="change" required
+                                                                class="form-control" id="">    
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="userName"> Confirm Password<span class="required">*</span></label>
+                                                        <input type="password" name="conf_password" parsley-trigger="change" required
+                                                                class="form-control" id="">    
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success"> Change password</button>
+                                                </form>
+                                                     </div>
+                                                 </div>
+
+                                            </div>
+                                            </div>
+                                            
                                 </div>
 
                                     </div>
