@@ -5,6 +5,18 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 {
     header('location:../index.php');
 }
+$user_email = $_SESSION['user'];
+if (isset($_POST['regsiter'])) {
+    $fullname = $_POST['fname'];
+    $mobile = $_POST['mobile'];
+    if (empty($mobile) || empty($fullname)) {
+        echo "<script> alert('All field is required')</script>";
+    }
+    else
+    {
+
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +54,23 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
             color: red;
         }
     </style>
+    <script type="text/javascript">
+        function valid()
+{
+if(document.addemp.password.value!= document.addemp.confirmpassword.value)
+{
+alert(" Password and Confirm Password does not match  !!");
+document.addemp.confirmpassword.focus();
+return false;
+}
+var x = $('#password').val().length;
+if(x< 8){
+    alert("Passwords must be More than eight character.");
+    return false;
+}
+
+}
+    </script>
 
     <body>
 
@@ -92,7 +121,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                                     </div>
 
                                                     <div class="form-group text-right m-b-0">
-                                                        <button class="btn btn-primary waves-effect waves-light" type="submit" name="regsiter" onclick="return valid();">
+                                                        <button class="btn btn-primary waves-effect waves-light" type="submit" name="regsiter" >
                                                             Submit
                                                         </button>
                                                     </div>
@@ -119,7 +148,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                                         <input type="password" name="conf_password" parsley-trigger="change" required
                                                                 class="form-control" id="">    
                                                     </div>
-                                                    <button type="submit" class="btn btn-success"> Change password</button>
+                                                    <button type="submit" class="btn btn-success" onclick="return valid();"> Change password</button>
                                                 </form>
                                                      </div>
                                                  </div>
