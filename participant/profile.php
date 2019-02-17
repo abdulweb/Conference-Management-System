@@ -81,6 +81,9 @@ if (isset($_POST['changeBtn'])) {
         }
     }
 }
+
+$get = mysqli_fetch_assoc(mysqli_query($con,"select * from user_profile where email ='$user_email'"));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,14 +178,14 @@ if(x< 8){
                                                         ?>
                                                             <div class="form-group">
                                                         <label for="passWord2">Full Name: <span class="required">*</span></label>
-                                                        <input type="text" name="fname" parsley-trigger="change" required
+                                                        <input type="text" name="fname" value="<?=$get['fullname']?>" parsley-trigger="change" required
                                                                 class="form-control" id="">
                                                         
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="userName">Mobile Number: <span class="required">*</span></label>
-                                                        <input type="number" name="mobile" parsley-trigger="change" required
+                                                        <input type="number" name="mobile" value="<?=$get['phone']?>" parsley-trigger="change" required
                                                                 class="form-control" id="">    
                                                     </div>
 
