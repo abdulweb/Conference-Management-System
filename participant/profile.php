@@ -5,16 +5,80 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 {
     header('location:../index.php');
 }
+$msg = $message =$messages = '';
 $user_email = $_SESSION['user'];
 if (isset($_POST['regsiter'])) {
-    $fullname = $_POST['fname'];
+    $fname = $_POST['fname'];
     $mobile = $_POST['mobile'];
-    if (empty($mobile) || empty($fullname)) {
+    if (empty($mobile) || empty($fname)) {
         echo "<script> alert('All field is required')</script>";
     }
     else
     {
+        $select = mysqli_query($con, "SELECT * from user_profile where email = '$user_email'");
+        if (mysqli_num_rows($select) > 0) {
+            $update = mysqli_query($con, "UPDATE user_profile set fullname = '$fname', phone = '$mobile' where email = '$user_email'");
+            if ($update) {
+                $msg = ' Record Updated Successfully';
+                $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button><i class="mdi mdi-block-helper"></i> <strong> </strong>'.$msg.' 
+                       </div>';
+            }
+            else{
+                 $msg = ' Error Occured Please Try again';
+                 $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button><i class="mdi mdi-block-helper"></i> <strong>Oh snap!!</strong>'.$msg.' 
+                       </div>';
+            }
+        }
+        else
+        {
+            $insert = mysqli_query($con, "INSERT INTO user_profile(email,fullname,phone) VALUES('$user_email','$fname','$mobile')") or mysqli_error($con);
+            if ($insert) {
+                $msg = ' Record Updated Successfully';
+                $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button><i class="mdi mdi-block-helper"></i> <strong> </strong>'.$msg.' 
+                       </div>';
+            }
+            else
+            {
+                $msg = ' Error Occured Please Try again';
+                 $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button><i class="mdi mdi-block-helper"></i> <strong>Oh snap!!</strong>'.$msg.' 
+                       </div>';
+            }
 
+        }
+    }
+}
+
+if (isset($_POST['changeBtn'])) {
+    $password = $_POST['password'];
+    $conf_password = $_POST['conf_password'];
+    if (empty($password) || empty($conf_password)) 
+    {
+         echo "<script> alert('All field is required')</script>";
+    }
+    else{
+        $upd = mysqli_query($con, "UPDATE user_tb set password ='$password' where email ='$user_email'");
+        if ($upd) {
+            $msg = 'Password Change Successfully';
+                $messages = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button><i class="mdi mdi-block-helper"></i> <strong> </strong>'.$msg.' 
+                       </div>';
+        }
+        else{
+            $msg = ' Error Occured Please Try again';
+                 $messages = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button><i class="mdi mdi-block-helper"></i> <strong>Oh snap!!</strong>'.$msg.' 
+                       </div>';
+        }
     }
 }
 ?>
@@ -57,10 +121,11 @@ if (isset($_POST['regsiter'])) {
     <script type="text/javascript">
         function valid()
 {
-if(document.addemp.password.value!= document.addemp.confirmpassword.value)
+if(document.addemp.password.value!= document.addemp.conf_password.value)
 {
 alert(" Password and Confirm Password does not match  !!");
-document.addemp.confirmpassword.focus();
+document.addemp.conf_password.focus();
+document.addemp.conf_password.style.borderColor = "red";
 return false;
 }
 var x = $('#password').val().length;
@@ -92,12 +157,10 @@ if(x< 8){
                                         <div class="card-box">
                                     <h4 class="header-title m-t-0">Participant Registration</h4>
                                     
-                                            <?php
-                                               // echo $message;
-                                            ?>
+                                            
                                             <div class="row">
                                                 <div class="p-20 col-md-6" >
-                                                <form action="" method="post" name="addemp">
+                                                <form action="" method="post" >
                                                 
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
@@ -107,6 +170,9 @@ if(x< 8){
                                                         </div>
 
                                                         <div class="panel-body">
+                                                        <?php
+                                                            echo $message;
+                                                        ?>
                                                             <div class="form-group">
                                                         <label for="passWord2">Full Name: <span class="required">*</span></label>
                                                         <input type="text" name="fname" parsley-trigger="change" required
@@ -115,7 +181,7 @@ if(x< 8){
                                                     </div>
                                                     
                                                     <div class="form-group">
-                                                        <label for="userName">Mobile Number<span class="required">*</span></label>
+                                                        <label for="userName">Mobile Number: <span class="required">*</span></label>
                                                         <input type="number" name="mobile" parsley-trigger="change" required
                                                                 class="form-control" id="">    
                                                     </div>
@@ -131,24 +197,26 @@ if(x< 8){
                                                 </form>
                                             </div>
                                             <div class="col-md-6">
-                                                 <div class="panel panel-success" style="margin-top: 24px;">
+                                                 <div class="panel panel-success" style="margin-top: 22px;">
                                                      <div class="panel-heading">
                                                          <p class="text-white">Change Password</p>
                                                      </div>
                                                      <div class="panel-body">
-                                                         <form method="post" action="">
+                                                     <?php
+                                                            echo $messages;
+                                                        ?>
+                                                         <form method="post" action="" name="addemp">
                                                      <div class="form-group">
-                                                        <label for="userName">Password<span class="required">*</span></label>
+                                                        <label for="userName">Password: <span class="required">*</span></label>
                                                         <input type="password" name="password" parsley-trigger="change" required
-                                                                class="form-control" id="">    
+                                                                class="form-control" id="password">    
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="userName"> Confirm Password<span class="required">*</span></label>
-                                                        <input type="password" name="conf_password" parsley-trigger="change" required
-                                                                class="form-control" id="">    
+                                                        <label for="userName"> Confirm Password: <span class="required">*</span></label>
+                                                        <input type="password" name="conf_password" parsley-trigger="change" class="form-control" required>    
                                                     </div>
-                                                    <button type="submit" class="btn btn-success" onclick="return valid();"> Change password</button>
+                                                    <button type="submit" name="changeBtn" class="btn btn-success" onclick="return valid();"> Change password</button>
                                                 </form>
                                                      </div>
                                                  </div>

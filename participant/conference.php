@@ -1,80 +1,53 @@
 <?php
- error_reporting(0);
-include '..\admin/includes/connection.php';
-$_SESSION['message'] ='';
+include '../connection.php';
 session_start();
-if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == null) {
+error_reporting(0);
+//$_SESSION['message'] ='';
+if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == null) 
+{
     header('location:../index.php');
 }
-$user_email = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php
-        include 'headlink.php';
-        ?>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="conference management system">
+        <meta name="description" content="UDUS CMS">
+        <meta name="author" content="abdulrasheed abdulrahedd">
+        <meta name="author" content="Abdullahi Muustapha">
+
+        <link rel="shortcut icon" href="..\assets/images/favicon.ico">
+
+        <title>Conference Management System</title>
+
+        <!-- App css -->
+        <link href="..\assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="..\assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="..\assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="..\assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="..\assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="..\assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="..\assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+
+        <script src="..\assets/js/modernizr.min.js"></script>
+
 
     </head>
 
 
-    <body class="fixed-left">
-
-        <!-- Loader -->
-        <div id="preloader">
-            <div id="status">
-                <div class="spinner">
-                  <div class="spinner-wrapper">
-                    <div class="rotator">
-                      <div class="inner-spin"></div>
-                      <div class="inner-spin"></div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Begin page -->
-        <div id="wrapper">
-
-            <?php
-                include '..\admin/includes/topbar.php';
-                include '..\admin/includes/sidebar.php';
-            ?>
-            
+    <body>
 
 
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container">
-
-                    <!-- Breadcrum start row -->
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title">Available Conference </h4>
-                                    <ol class="breadcrumb p-0 m-0">
-                                        <li>
-                                            <a href="index.php">Dashboard</a>
-                                        </li>
-                                       
-                                        <li class="active">
-                                           Conference
-                                        </li>
-                                    </ol>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  breadcrum end row -->
-
-                        <!-- start row of grid -->
-                      <div class="row">
+       <?php
+        include 'include/topnav.php';
+       ?>
+        <div class="wrapper">
+            <div class="container">
+                    
+                    <div class="row">
                       <?php
                       echo $_SESSION['message'];
                          $sql = mysqli_query($con, "SELECT * FROM conference_tb ORDER BY id DESC");
@@ -151,41 +124,34 @@ $user_email = $_SESSION['user'];
                            ?>
                         </div>
                         <!-- end row of grid -->
+                 
 
-
-
-                    </div> <!-- container -->
-
-                </div> <!-- content -->
-
-               <!-- footer section start-->
-               <?php
-                include '..\admin/includes/footer.php';
-               ?>
-               <!-- footer end -->
-
-            </div>
-
-
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
-
-
-            
-
+                
+            <!-- footer section -->
+            <?php
+            include 'include/footer.php';
+            unset($_SESSION['message']);
+            ?>
+            <!-- end of footer -->
+            </div> <!-- end container -->
         </div>
-        <!-- END wrapper -->
+        <!-- end wrapper -->
 
 
+        <!-- jQuery  -->
+        <script src="..\assets/js/jquery.min.js"></script>
+        <script src="..\assets/js/bootstrap.min.js"></script>
+        <script src="..\assets/js/detect.js"></script>
+        <script src="..\assets/js/fastclick.js"></script>
+        <script src="..\assets/js/jquery.blockUI.js"></script>
+        <script src="..\assets/js/waves.js"></script>
+        <script src="..\assets/js/jquery.slimscroll.js"></script>
+        <script src="..\assets/js/jquery.scrollTo.min.js"></script>
+        <script src="../plugins/switchery/switchery.min.js"></script>
 
-        <script>
-            var resizefunc = [];
-        </script>
+        <!-- App js -->
+        <script src="..\assets/js/jquery.core.js"></script>
+        <script src="..\assets/js/jquery.app.js"></script>
 
-        <?php
-        include 'js.php';
-        unset($_SESSION['message']);
-        ?>
     </body>
 </html>
