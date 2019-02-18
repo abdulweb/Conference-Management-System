@@ -76,7 +76,7 @@
                                 </a>
                                 <ul class="submenu">
                                     <li><a href="logout.php">Logout</a></li>
-                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="profile.php"> My Profile</a></li>
                                     
                                 </ul>
                             </li>
