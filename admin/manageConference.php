@@ -85,11 +85,8 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                         <li>
                                             <a href="index.php">Dashboard</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Pages </a>
-                                        </li>
                                         <li class="active">
-                                            Blank Page
+                                            Manage Conferences
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>

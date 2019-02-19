@@ -78,9 +78,90 @@ if (isset($_POST['update'])) {
 }
 
 // update conference image
-// if (isset($_POST['change_image'])) {
-    
-// }
+if (isset($_POST['image_update'])) {
+    $target_dir = "uploads/";
+                    $target_file = $target_dir . basename($_FILES["conf_image"]["name"]);
+                    $uploadOk = 1;
+                    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                    // Check if image file is a actual image or fake image
+                        $check = getimagesize($_FILES["conf_image"]["tmp_name"]);
+                        if($check !== false) {
+                            //echo "File is an image - " . $check["mime"] . ".";
+                            $uploadOk = 1;
+                        } else {
+                            $msg = "File is not an image. Please select Image file";
+                            $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <i class="mdi mdi-block-helper"></i><strong>Oh shit!!</strong>'.$msg.' 
+                                            </div>';
+                            $uploadOk = 0;
+                        }
+
+                      // Check file size
+                      if ($_FILES["conf_image"]["size"] > 5000000) 
+                      {
+                          $msg = "Sorry, your file is too large. Must not be more than 5MB";
+                          $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                    </div>';
+                          $uploadOk = 0;
+                      }
+                      // Allow certain file formats
+                      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                        && $imageFileType != "gif" ) 
+                      {
+                          $msg =  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                          $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                    </div>';
+                          $uploadOk = 0;
+                      }
+                    // Check if $uploadOk is set to 0 by an error
+                      if ($uploadOk == 0) 
+                      {
+                          $msg =  "Sorry, your file was not uploaded. Please retry";
+                          $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                    </div>';
+
+                      // if everything is ok, try to upload file
+                      } 
+                      else {
+                        if (move_uploaded_file($_FILES["conf_image"]["tmp_name"], $target_file)) 
+                        {
+                            // insert into database
+                               $insert = mysqli_query($con, "UPDATE conference_tb set conf_image ='$target_file' where id = '$get_id'") or die(mysqli_error($con));
+                            if ($insert) {
+                               $msg = ' Conference Created Successfully';
+                                 $_SESSION['message'] = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
+                                        </div>';
+                                        header('location:manageConference.php');
+                            }
+                            else
+                            {
+                                $msg = ' Error Occure. Please Retry';
+                                 $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                        </div>';
+                            }
+
+                            } 
+                            else 
+                            {
+                                $msg =  "Sorry, there was an error uploading your file.";
+                                $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                        </div>';
+                            }
+}
+}
 
 // Get ID
 
@@ -198,7 +279,10 @@ if (isset($_POST['update'])) {
                                             <a href="index.php">Dashboard</a>
                                         </li>
                                         <li class="active">
-                                            Create Conference
+                                            <a href="manageConference.php">Conference</a>
+                                        </li>
+                                        <li class="active">
+                                            Edit Conference
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -217,7 +301,7 @@ if (isset($_POST['update'])) {
                                                Field with  asterike<span class="required">(*)</span> must be fill
                                             </p>
                                             <?php
-                                                //echo $message;
+                                                echo $message;
                                             ?>
 
                                             <div class="p-20">
@@ -268,19 +352,6 @@ if (isset($_POST['update'])) {
                                                          <input type="text" name="conf_venue" parsley-trigger="change" required
                                                                 class="form-control" id="userName" value="<?=$rows['conf_venue']?>">
                                                     </div>
-                                                     <!-- <div class="form-group">
-                                                        <label for="passWord2">Conference Fee <span class="required">*</span></label>
-                                                        <input type="text" name="conf_fee" data-a-sign="# " class="form-control autonumber" required>
-                                                                <span class="font-13 text-muted">e.g. "# $ 1,234,567,890,123"</span>
-                                                        
-                                                    </div> -->
-
-                                                   <!--  <div class="form-group">
-                                                        <label for="passWord2">Conference Image <span class="required">*</span></label>
-                                                        <input type="file" name="conf_image" data-a-sign="# " class="form-control" value="<?=$rows['conf_image']?>" required>
-                                                                
-                                                        
-                                                    </div> -->
 
                                                     <div class="form-group text-right m-b-0">
                                                         <button class="btn btn-primary waves-effect waves-light" type="submit" name="update" onclick="return valid()">
@@ -327,14 +398,14 @@ if (isset($_POST['update'])) {
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <label for="field-1" class="control-label"> Conference Image :</label>
-                                                        <input type="file" name="image_of_conf">
+                                                        <input type="file" name="conf_image">
                                                     </div>
                                                 </div>
                                              </div>
                                             
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-success">Update Image</button>
+                                            <button type="submit" name="image_update" class="btn btn-success">Update Image</button>
                                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Close</button>
                                         </div>
                                     </form>
