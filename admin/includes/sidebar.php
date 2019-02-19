@@ -54,14 +54,7 @@
                                 <a href="calendar.html" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Calendar </span></a>
                             </li> -->
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email"></i><span> Reviewers </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="add_reviewer.php"> Add Reviewers</a></li>
-                                    <li><a href="manageReviewr.php"> Manage Reviewers</a></li>
-                                    
-                                </ul>
-                            </li>
+                           
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class=" mdi mdi-account-settings-variant"></i><span> users </span> <span class="menu-arrow"></span></a>

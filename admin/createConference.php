@@ -6,143 +6,160 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 {
     header('location:../index.php');
 }
-// if (isset($_POST['add_conf'])) {
-//     $conf_name = ucwords($_POST['conf_name']);
-//     $conf_desc = ucwords($_POST['conf_desc']);
-//     $conf_date = $_POST['conf_date'];
-//     $conf_time = $_POST['conf_time'];
-//     $conf_venue = ucwords($_POST['conf_venue']);
-//     // $conf_fee = $_POST['conf_fee'];
+if (isset($_POST['add_conf'])) {
+    $conf_name = ucwords($_POST['conf_name']);
+    $conf_desc = ucwords($_POST['conf_desc']);
+    $conf_date = $_POST['conf_date'];
+    $conf_time = $_POST['conf_time'];
+    $conf_venue = ucwords($_POST['conf_venue']);
+    $conf_end_date = $_POST['conf_end_date'];
 
-//     // check if any is empty
-//     if (empty($conf_name)|| empty($conf_desc) || empty($conf_date) || empty($conf_time) || empty($conf_venue)) {
-//        $msg = ' All field with asterik must be field';
-//        $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                 <button type="button" class="close" data-dismiss="alert"
-//                                                         aria-label="Close">
-//                                                     <span aria-hidden="true">&times;</span>
-//                                                 </button>
-//                                                 <i class="mdi mdi-block-helper"></i>
-//                                                 <strong>Oh snap!!</strong>'.$msg.' 
-//                                             </div>';
-//     }
-//     else{
-//         //check if conference exit before
-//         $sql = mysqli_query($con, "select * from conference_tb where conf_title = '$conf_name'");
-//         if (mysqli_num_rows($sql)>0) {
-//              $msg = ' Conference Already Exist';
-//              $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                         <i class="mdi mdi-block-helper"></i><strong>Oh shit!!</strong>'.$msg.' 
-//                         </div>';
-//         }
-//         else{
-//                 $target_dir = "uploads/";
-//                 $target_file = $target_dir . basename($_FILES["conf_image"]["name"]);
-//                 $uploadOk = 1;
-//                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-//                 // Check if image file is a actual image or fake image
-//                     $check = getimagesize($_FILES["conf_image"]["tmp_name"]);
-//                     if($check !== false) {
-//                         //echo "File is an image - " . $check["mime"] . ".";
-//                         $uploadOk = 1;
-//                     } else {
-//                         $msg = "File is not an image. Please select Image file";
-//                         $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                                         <i class="mdi mdi-block-helper"></i><strong>Oh shit!!</strong>'.$msg.' 
-//                                         </div>';
-//                         $uploadOk = 0;
-//                     }
-//                      // Check if file already exists
-//         if (file_exists($target_file)) {
-//             // insert into database
-//             $insert = mysqli_query($con, "INSERT into conference_tb(conf_title,conf_desc,conf_date,conf_time,conf_venue,conf_image) values('$conf_name','$conf_desc','$conf_date','$conf_time','$conf_venue','$target_file')") or die(mysqli_error($con));
-//             if ($insert) {
-//                $msg = ' Conference Created Successfully';
-//              $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
-//                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                         <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
-//                         </div>';
-//             }
-//             else{
-//                 $msg = ' Error Occure. Please Retry';
-//              $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-//                         </div>';
-//             }
+    // check if any is empty
+    if (empty($conf_name)|| empty($conf_desc) || empty($conf_date) || empty($conf_time) || empty($conf_venue) || empty($conf_end_date)) {
+       $msg = ' All field with asterik must be field';
+       $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <i class="mdi mdi-block-helper"></i>
+                                                <strong>Oh snap!!</strong>'.$msg.' 
+                                            </div>';
+    }
+    else{
+        $startdate = substr($conf_date,6);
+        $enddate = substr($conf_end_date,6);
+        if (($startdate> $enddate) || $enddate < date('m/d/Y')) {
+            $msg = ' Wrong Date Format';
+           $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <i class="mdi mdi-block-helper"></i>
+                                                <strong>Oh snap!!</strong>'.$msg.' 
+                                            </div>';
+        }
+        else 
+        {
 
-//         }
-//         else
-//         {
+            //check if conference exit before
+            $sql = mysqli_query($con, "select * from conference_tb where conf_title = '$conf_name'");
+            if (mysqli_num_rows($sql)>0) {
+                 $msg = ' Conference Already Exist';
+                 $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="mdi mdi-block-helper"></i><strong>Oh shit!!</strong>'.$msg.' 
+                            </div>';
+            }
+            else{
+                    $target_dir = "uploads/";
+                    $target_file = $target_dir . basename($_FILES["conf_image"]["name"]);
+                    $uploadOk = 1;
+                    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                    // Check if image file is a actual image or fake image
+                        $check = getimagesize($_FILES["conf_image"]["tmp_name"]);
+                        if($check !== false) {
+                            //echo "File is an image - " . $check["mime"] . ".";
+                            $uploadOk = 1;
+                        } else {
+                            $msg = "File is not an image. Please select Image file";
+                            $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <i class="mdi mdi-block-helper"></i><strong>Oh shit!!</strong>'.$msg.' 
+                                            </div>';
+                            $uploadOk = 0;
+                        }
+                         // Check if file already exists
+            if (file_exists($target_file)) {
+                // insert into database
+                $insert = mysqli_query($con, "INSERT into conference_tb(conf_title,conf_desc,conf_date,conf_time,conf_venue,conf_image) values('$conf_name','$conf_desc','$conf_date','$conf_time','$conf_venue','$target_file')") or die(mysqli_error($con));
+                if ($insert) {
+                   $msg = ' Conference Created Successfully';
+                 $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
+                            </div>';
+                }
+                else{
+                    $msg = ' Error Occure. Please Retry';
+                 $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                            </div>';
+                }
+
+            }
+            else
+            {
 
 
-//           // Check file size
-//           if ($_FILES["conf_image"]["size"] > 5000000) 
-//           {
-//               $msg = "Sorry, your file is too large. Must not be more than 5MB";
-//               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-//                         </div>';
-//               $uploadOk = 0;
-//           }
-//           // Allow certain file formats
-//           if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-//             && $imageFileType != "gif" ) 
-//           {
-//               $msg =  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-//               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-//                         </div>';
-//               $uploadOk = 0;
-//           }
-//         // Check if $uploadOk is set to 0 by an error
-//           if ($uploadOk == 0) 
-//           {
-//               $msg =  "Sorry, your file was not uploaded. Please retry";
-//               $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                         <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-//                         </div>';
+              // Check file size
+              if ($_FILES["conf_image"]["size"] > 5000000) 
+              {
+                  $msg = "Sorry, your file is too large. Must not be more than 5MB";
+                  $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                            </div>';
+                  $uploadOk = 0;
+              }
+              // Allow certain file formats
+              if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif" ) 
+              {
+                  $msg =  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                  $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                            </div>';
+                  $uploadOk = 0;
+              }
+            // Check if $uploadOk is set to 0 by an error
+              if ($uploadOk == 0) 
+              {
+                  $msg =  "Sorry, your file was not uploaded. Please retry";
+                  $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                            </div>';
 
-//           // if everything is ok, try to upload file
-//           } 
-//           else {
-//             if (move_uploaded_file($_FILES["conf_image"]["tmp_name"], $target_file)) 
-//             {
-//                 // insert into database
-//                $insert = mysqli_query($con, "INSERT into conference_tb(conf_title,conf_desc,conf_date,conf_time,conf_venue,conf_image) values('$conf_name','$conf_desc','$conf_date','$conf_time','$conf_venue','$target_file')") or die(mysqli_error($con));
-//                 if ($insert) {
-//                    $msg = ' Conference Created Successfully';
-//                  $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
-//                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                             <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
-//                             </div>';
-//                 }
-//                 else{
-//                     $msg = ' Error Occure. Please Retry';
-//                  $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                             <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-//                             </div>';
-//                 }
+              // if everything is ok, try to upload file
+              } 
+              else {
+                if (move_uploaded_file($_FILES["conf_image"]["tmp_name"], $target_file)) 
+                {
+                    // insert into database
+                   $insert = mysqli_query($con, "INSERT into conference_tb(conf_title,conf_desc,conf_date,conf_time,conf_venue,conf_image,conf_end_date) values('$conf_name','$conf_desc','$conf_date','$conf_time','$conf_venue','$target_file','$conf_end_date')") or die(mysqli_error($con));
+                    if ($insert) {
+                       $msg = ' Conference Created Successfully';
+                     $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
+                                </div>';
+                    }
+                    else{
+                        $msg = ' Error Occure. Please Retry';
+                     $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                </div>';
+                    }
 
-//                 } else {
-//                     $msg =  "Sorry, there was an error uploading your file.";
-//                     $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
-//                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//                             <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
-//                             </div>';
-//                 }
-//             }
-//           }
-            
-//         }
-//     }
-// }
+                    } else {
+                        $msg =  "Sorry, there was an error uploading your file.";
+                        $message =   '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="mdi mdi-block-helper"></i><strong>Attension!!</strong>'.$msg.' 
+                                </div>';
+                    }
+                }
+              }
+                
+        }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,6 +212,17 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
     document.addemp.conf_end_date.focus();
     document.addemp.conf_end_date.style.borderColor = "red";
     return false;
+    }
+    var end = $('#conf_end').val().length;
+    var start = $('#datepicker-autoclose').val().length;
+
+    if(end < start){
+        alert("Wrong End Date format Use the start date format.");
+        document.addemp.conf_end_date.focus();
+        document.addemp.conf_end_date.style.borderColor = "black";
+        document.addemp.conf_end_date.style.borderColor = "red";
+        return false;
+
     }
 
     }
@@ -292,7 +320,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                                         <label for="pass1">Conference End Date<span class="required">*</span></label>
                                                         <div>
                                                             <div class="input-group">
-                                                                <input type="text" name="conf_end_date" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose" required>
+                                                                <input type="text" name="conf_end_date" class="form-control" placeholder="mm/dd/yyyy" id="conf_end" required>
                                                                 <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
                                                             </div><!-- input-group -->
                                                         </div>
