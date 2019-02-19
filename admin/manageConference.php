@@ -1,6 +1,7 @@
 <?php
 include 'includes/connection.php';
 session_start();
+error_reporting(0);
 if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == null) 
 {
     header('location:../index.php');
@@ -104,7 +105,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                            <div class="panel panel-primary">
                                <div class="panel-heading"> <i class="fa fa-desktop"> </i> <strong>List of conference </strong></div>
                                <div class="panel-body">
-                                    <h4 class="m-t-0 header-title"><b>Buttons example</b></h4>
+                                    <h4 class="m-t-0 header-title"><b><?=$_SESSION['message'];?></b></h4>
                             <p class="text-muted font-13 m-b-30">
                                
                             </p>
@@ -135,13 +136,13 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     
 
                                     <td style="padding-left: 20px;">
-                                        <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
+                                        <!-- <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
 
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a> -->
 
-                                        <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_row('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-right: 5px;"></i> </a>
+                                        <a href="edit_conference.php?id=<?php echo htmlentities($row['id']);?>"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_row('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-right: 5px;"></i> </a>
 
-                                        <a href="#" class="on-default remove-row" onclick="delete_row('<?php echo $row['id'];?>');"><i class="fa fa-trash-o"></i></a>
+                                        <a href="delete_conference.php?id=<?php echo htmlentities($row['id']);?>" class="on-default remove-row" onclick="delete_row('<?php echo $row['id'];?>');"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -165,6 +166,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                <!-- footer section start-->
                <?php
                 include 'includes/footer.php';
+                 unset($_SESSION['message']);
                ?>
                <!-- footer end -->
 
