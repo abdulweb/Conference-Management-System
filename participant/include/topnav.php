@@ -10,7 +10,7 @@
                             <!--Zircos-->
                         <!--</a>-->
                         <!-- Image Logo -->
-                        <a href="index.html" class="logo">
+                        <a href="index.php" class="logo">
                             <!-- <img src="assets/images/logo.png" alt="" height="30"> -->
                             <h2 style="color: white;font-style: italic;margin-left: 270px;text-shadow: 1px 1px red;">ONLINE CONFERENCE MANAGEMENT SYSTEM</h2>
                         </a>

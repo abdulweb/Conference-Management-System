@@ -55,6 +55,9 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                              while ($row = mysqli_fetch_assoc($sql)) {
                                 $image_back = $row['conf_image'];
                                 $conf_id = $row['id'];
+                                $fee_select = mysqli_query($con, "select * from fee_tb where conf_id ='$conf_id'");
+                                while ($fee_fetch = mysqli_fetch_assoc($fee_select)) {
+                                    
                                // echo "<script>alert('$image_back')</script>";
                      ?>
                             <div class="property-card property-horizontal" style="height: auto;">
@@ -73,11 +76,12 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                             <h3> 
                                                 <a href="#" class="text-blue"><?=$row['conf_title']?> </a>
                                             </h3>
-                                                <!-- <h4 class="text-success m-t-0"><span>Conference Price: </span><?=$row['conf_fee']?></h4> -->
+                                                <h4 class="text-success m-t-0"><span>Conference Price: </span><?=$fee_fetch['user']?></h4>
                                             </div>
                                             <div class="" style="text-align: justify;padding-bottom: 30px;">
                                                 
-                                                <p class="text-muted"> Venue<i class="mdi mdi-map-marker-radius m-r-5"></i><?=$row['conf_venue'] ." ". "On ". " " .$row['conf_date']." ". "By ". " " .$row['conf_time'] ?></p>
+                                                <p class="text"> Venue<i class="mdi mdi-map-marker-radius m-r-5"></i><?=$row['conf_venue'] ." ". "On ". " " .$row['conf_date']." ". "By ". " " .$row['conf_time'] ?></p>
+                                                <p class="text"> From <?php echo $row['conf_date']." ". 'To '. " ". $row['conf_end_date'] ?></p>
 
                                                 <p class="font-15 text-muted m-b-0" style="height: auto;"><?=$row['conf_desc']?></p>
                                             </div>
@@ -93,13 +97,21 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                                 if (mysqli_num_rows($check) > 0) 
                                                     {
                                                         ?>
-                                                     <a href="conf-un_register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-danger btn-rounded" onclick="return confirm('Wont Attend again?');"><i class="mdi mdi-account-remove" ></i><span>Not Attend</span></a>
+                                                     <a href="conf-un_register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-primary btn-rounded" onclick="return confirm('Wont Attend again?');"><i class="mdi mdi-account-remove" ></i><span>Not Attend</span></a>
                                                    <?php 
                                                     }
                                                     else
-                                                        {?>
+                                                        {
+                                                           if ($row['conf_end_date'] < date('m/d/Y')) {
+                                                               echo '<button class ="btn btn-danger btn-sm">Closed</button>';
+                                                           }
+                                                           else{
+
+
+                                                    ?>
                                                         <a href="conf-register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-success btn-rounded" onclick="return confirm('Ready to Register?');"><i class="mdi mdi-account-check"></i><span>Register</span></a>
                                                    <?php 
+                                                    }
                                                     }
 
                                             ?>
@@ -118,6 +130,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                             <?php
                                     }
                                 }
+                            }
                                 else{
                                     echo '<p class="text-center">No Conference Available</p>';
                                 }
