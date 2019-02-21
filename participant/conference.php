@@ -103,7 +103,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                                     else
                                                         {
                                                            if ($row['conf_end_date'] < date('m/d/Y')) {
-                                                               echo '<button class ="btn btn-danger btn-sm">Closed</button>';
+                                                               echo '<button class ="btn btn-danger btn-sm"> <i class="mdi mdi-alert"> </i> Closed</button>';
                                                            }
                                                            else{
 
