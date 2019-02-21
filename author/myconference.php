@@ -94,6 +94,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <th> Conference Title</th>
                                     <th>Start Date</th>
                                     <th>End Date </th>
+                                    <th>Price</th>
                                     <th></th>
                                     
                                 </tr>
@@ -105,7 +106,10 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                           $conf_id = $row['conf_id'];
                                           $select = mysqli_query($con, "select * from conference_tb where id = '$conf_id'");
                                           while ($rows = mysqli_fetch_assoc($select)) {
-                                          
+                                            $get_fee = mysqli_query($con,"select * from fee_tb where conf_id = '$conf_id'");
+                                            while ($fees = mysqli_fetch_assoc($get_fee)) {
+                                            
+                                            
                                           
                                           ?>
                                             
@@ -115,15 +119,15 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <td ><?=$rows['conf_title']?></td>
                                     <td><?=$rows['conf_date']?></td>
                                     <td ><?=$rows['conf_end_date']?> </td>
-                                    <td >
-                                       
-                                    </td>
+                                    <td ><?=$fees['author']?></td>
+                                    <td></td>
                                    
                                 </tr>
                                 </tbody>
                                    <?php
                                  }
-                               $counter++;}
+                             $counter++;}
+                               }
                                     ?>
                             </table>
                                </div>
