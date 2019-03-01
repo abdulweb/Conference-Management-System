@@ -118,7 +118,7 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                         <div class="panel-heading">
                                             <div class="panel-body">
                                                 
-                                               <iframe src = "..\ViewerJS/cmp409.pdf" width='800' height='300' allowfullscreen webkitallowfullscreen></iframe>
+                                               <iframe src = "<?=$rows['document']?>" width='800' height='300' allowfullscreen webkitallowfullscreen></iframe>
                                             
                                             </div>
                                         </div>
