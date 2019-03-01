@@ -49,12 +49,6 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                         <div class="col-md-12">
                              <div class="property-card property-horizontal" style="height: auto; margin-top: 40px;">
                             <div class="row">
-                                <!-- <div class="col-sm-4">
-                                    <div class="property-image" style="background: url('<?= 'admin/'.$image_back;?>') center center / cover no-repeat;">
-                                        <span class="property-label label label-warning">Conference image</span>
-                                    </div>
-                                </div> -->
-                                <!-- /col 4 -->
                                 <div class="col-sm-10">
                                     <div class="property-content" style="height: auto; ">
                                        <h3>welcome <?=$_SESSION['user']?></h3>

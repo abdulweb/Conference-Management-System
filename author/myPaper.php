@@ -118,7 +118,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     </form>
                                     </td>
                                     <td >
-                                        <?=mysqli_num_rows(mysqli_query($con, "SELECT * from upload_document where email = '$user_email' and reviewer <> ''"));?>
+                                        <?=mysqli_num_rows(mysqli_query($con, "SELECT * from upload_document where email = '$user_email' and conf_id = '$conf_id'  and reviewer <> '' "));?>
                                     </td>
                                     <td>
                                         <?php
@@ -135,7 +135,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                         ?>
                                     </td>
                                     <td style="padding-left: 20px;">
-                                        <a href="paper_review.php?id=<?php echo htmlentities($row['id']);?>"  class="on-editing save" onclick="alert('<?php echo $row['id'];?>');"><i class="fa fa-desktop" style="font-size: 20px;"></i></a>
+                                        <a href="paper_review.php?id=<?php echo htmlentities($row['id']);?>"  class="on-editing save"><i class="fa fa-desktop" style="font-size: 20px;"></i></a>
 
                                         <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
 
