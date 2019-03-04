@@ -114,19 +114,19 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <th>S/N</th>
                                     <th> Author Name</th>
                                     <th>Author Email</th>
-                                    <!-- <th>Paper upload</th> -->
+                                    <th>Paper upload</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                     <?php
-                                        $sql = mysqli_query($con, "SELECT DISTINCT id,email,username,usertype from user_tb where usertype ='author' ORDER BY id") or die(mysqli_error($con));
+                                        $sql = mysqli_query($con, "select * from user_tb where usertype ='author'") or die(mysqli_error($con));
                                         $counter = 1;
                                         while ($row = mysqli_fetch_assoc($sql)) {
                                           $auth_email = $row['email'];
                                           $select = mysqli_query($con, "select * from user_profile where email = '$auth_email'");
                                           while ($rows = mysqli_fetch_assoc($select)) {
                                             $query = mysqli_query($con, "select * from upload_document where email ='$auth_email'");
-                                            //while ($data = mysqli_fetch_assoc($query)) {
+                                            while ($data = mysqli_fetch_assoc($query)) {
                                                 # code...
                                            
                                           
@@ -137,7 +137,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <td><?=$counter?></td>
                                     <td id="title<?php echo $row['id'] ?>"><?=$rows['fullname']?></td>
                                     <td id="user<?php echo $row['id'] ?>"><?=$row['email']?></td>
-                                    <!-- <td id="author<?php //echo $row['id'] ?>"><?=$data['about']?></td> -->
+                                    <td id="author<?php echo $row['id'] ?>"><?=$data['about']?></td>
                                     <td style="padding-left: 20px;">
                                     <a href="view_author.php?id=<?php echo htmlentities($row['email']);?>"  ><i class="fa fa-desktop"></i></a>
 
@@ -152,7 +152,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                 </tr>
                                 </tbody>
                                    <?php
-                                // }
+                                 }
                                     $counter++; }
                                }
                                     ?>
