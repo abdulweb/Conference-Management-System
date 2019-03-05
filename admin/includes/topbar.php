@@ -3,7 +3,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="index.php" class="logo"><span>CMS<span></span></span><i class="mdi mdi-cube"></i></a>
+                    <a href="index.php" class="logo"><span>EOCMS<span></span></span><i class="mdi mdi-cube"></i></a>
                    
                 </div>
 

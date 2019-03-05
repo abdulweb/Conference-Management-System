@@ -101,7 +101,7 @@ if (isset($_POST['add_profile'])) {
                                 // insert into database
                                $insert = mysqli_query($con, "INSERT into user_profile(email,title,fullname,phone,bio,passport,field,social_name) values('$user_email','$title','$fullname','$phone','$bio','$target_file','$spec','$soc')") or die(mysqli_error($con));
                                 if ($insert) {
-                                   $msg = ' Profile Updated Successfully';
+                                   $msg = ' Profile Updated Successfullly';
                                  $message = '<div class="alert alert-icon alert-success alert-dismissible fade in" role="alert"> 
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <i class="mdi mdi-check"></i><strong>Congratulation!!</strong>'.$msg.' 
@@ -253,7 +253,7 @@ $socx = $fetch['social_name'];
                                                         <input type="text" name="spec" class="form-control" value="<?=$specx?>" required> 
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="passWord2">Social Media Username: </label>
+                                                        <label for="passWord2">Facebook Username: </label>
                                                         <input type="text" name="soc" placeholder="exampl@facebook.com, example@twitter.com" class="form-control" value="<?=$socx?>" required> 
                                                     </div>
                                                     <div class="form-group">
