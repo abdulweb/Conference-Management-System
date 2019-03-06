@@ -189,8 +189,19 @@ if(isset($_POST['approveBtn'])) {
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
                                     <?php echo $message; ?>
+                                    <?php
+                                        $email = $_GET['id'];
+                                        $query = mysqli_query($con, "select * from user_profile where email = '$email'") or die(mysqli_error($con));
+                                        while ($data = mysqli_fetch_assoc($query)) {
+                                            $sql = mysqli_query($con, "select * from upload_document where email ='$email'");
+                                            while ($data_fetch = mysqli_fetch_assoc($sql)) {
+                                                $conf_id = $data_fetch['conf_id'];
+
+                                                $sql_query = mysqli_query($con,"select * from conference_tb where id = '$conf_id' ") or die(mysqli_error($con));
+                                                while ($fetchx = mysqli_fetch_assoc($sql_query)) {
+                                    ?>
                                     <h3>Author Paper Details</h3>
-                                   <a href="attach.php?id=<?php echo htmlentities($email);?>"> <button class="btn btn-primary" style="float: right; margin-bottom:18px; margin-right: 10px;">Attach Reviewer</button> </a>
+                                   <a href="attach.php?id=<?php echo htmlentities($data_fetch['id']);?>"> <button class="btn btn-primary" style="float: right; margin-bottom:18px; margin-right: 10px;">Attach Reviewer</button> </a>
                                     <table class="table table-bordered">
                                         <tr>
                                             <th>Author Name</th>
@@ -254,9 +265,13 @@ if(isset($_POST['approveBtn'])) {
                                     <form method="post" action="">
                                         <input type="hidden" name="approve" value="<?php echo $data_fetch['id']?>" />
                                       <button type="submit" name="approveBtn" onclick="return confirm('Are You sure You want to to Approve')" class="btn btn-success" style="float: right;margin-right: 8px;">Approve Paper</button>
-                                    </form> 
+                                    </form> <br><br><hr>
                                     
-                                    
+                                    <?php
+                                        }
+                                            }
+                                        }
+                                    ?>
                                         
                                 </div>
                             </div>

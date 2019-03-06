@@ -11,8 +11,8 @@ if (empty($_GET['id'])) {
     header('location:author.php');
 }
 else{
-    $email = $_GET['id'];
-    $query = mysqli_query($con, "select * from user_profile where email = '$email'") or die(mysqli_error($con));
+    $id = $_GET['id'];
+    $query = mysqli_query($con, "select * from upload_document where id = '$id'") or die(mysqli_error($con));
     $data = mysqli_fetch_assoc($query);
 
     // $reviwe = mysqli_query($con, "select * from user_tb where usertype ='reviewer'");
@@ -21,14 +21,14 @@ else{
 //send email messsage
 if(isset($_POST['add_attach'])) {
     $conf_id = $_POST['conf_id'];
-    //$auth_email = $_POST['auth_email'];
+    $auth_email = $_POST['auth_email'];
     $reviwe_email = $_POST['reviwe_email'];
 
     $Subject = 'Reviewer Attachment';
     $body = 'You have been marge to '." ".$email;
      $body2 = 'You have been marge to '." ".$reviwe_email;
     
-    $inset_sql = mysqli_query($con, "UPDATE upload_document set reviewer ='$reviwe_email' where conf_id ='$conf_id' and email ='$email'")or die (mysqli_error($con));
+    $inset_sql = mysqli_query($con, "UPDATE upload_document set reviewer ='$reviwe_email' where conf_id ='$conf_id' and email ='$auth_email'")or die (mysqli_error($con));
     sendmail($email,$Subject,$body2);
     sendmail($reviwe_email,$Subject,$body);
     if ($inset_sql) 
@@ -154,8 +154,8 @@ if(isset($_POST['add_attach'])) {
                                             </p>
                                             <?php
                                                 echo $message;
-
-                                                $sql = mysqli_query($con, "select * from conference_tb");
+                                                $new_conf_id = $data['conf_id'];
+                                                $sql = mysqli_query($con, "select * from conference_tb where id ='$new_conf_id' ");
                                                 $reviwe = mysqli_query($con, "select * from user_tb where usertype ='reviewer'");
                                                 
                                             ?>
@@ -165,15 +165,11 @@ if(isset($_POST['add_attach'])) {
                                                     
                                                     <div class="form-group">
                                                         <label for="passWord2">Author Email: <span class="required">*</span></label>
-                                                        <input type="text" name="auth_email" value="<?=$email?>"  class="form-control" required disabled>
-                                                                
-                                                        
+                                                        <input type="text" name="auth_email" value="<?=$data['email']?>"  class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="userName">Conference Title/Themes<span class="required">*</span></label>
                                                         <select class="form-control" name="conf_id" required>
-                                                            <option value="">Select Conference Tittle</option>
-                                                            
                                                                 <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
                                                                 <option value="<?=$row['id'] ?>"><?= $row['conf_title'] ?></option>
                                                             <?php } ?>
