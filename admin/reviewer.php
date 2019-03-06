@@ -233,25 +233,23 @@ if(x< 4)
 
                                           while ($rows = mysqli_fetch_assoc($select)) {
                                             
-                                                // code...
-                                           
-                                          
                                           ?>
                                             
                                 <tbody>
                                  <tr id="row<?php echo $row['id'];?>">
                                     <td><?=$counter?></td>
-                                    <td id="title<?php echo $row['id'] ?>"><?=$rows['fullname']?></td>
+                                    <td id="name<?php echo $row['id']?>"><?=$rows['fullname']?></td>
                                     <td><?=$row['email']?></td>
-                                    <td id="title<?php echo $row['id'] ?>"><?=$rows['field']?></td>
+                                    <td id="field<?php echo $row['id'] ?>"><?=$rows['field']?></td>
                                     <td style="padding-left: 20px;">
                                     <a href=""  ><i class="fa fa-desktop"></i></a>
 
                                         <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
 
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                        <a href="#" class="hidden on-editing cancel-row" onclick="edit_fee('<?=$row['id']?>')"><i class="fa fa-times"></i></a>
 
-                                        <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-right: 5px;"></i> </a>
+                                        <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-right: 5px; margin-left: 8px;"></i> </a>
+                                        <a href="#" id="delete<?php echo $row['id'];?>"><i class="fa fa-trash" style="margin-right: 5px;"></i></a>
 
                                         
                                     </td>
@@ -421,10 +419,10 @@ if(x< 4)
 {
     //alert('hey');
  //var title=document.getElementById("title"+id).innerHTML;
- var user=document.getElementById("user"+id).innerHTML;
- var author=document.getElementById("author"+id).innerHTML;
- document.getElementById("user"+id).innerHTML="<input type='text' class='form-control' autofocus id='user_text"+id+"' value='"+user+"'>";
- document.getElementById("author"+id).innerHTML="<input type='text' class='form-control' id='author_text"+id+"' value='"+author+"'>";
+ var name=document.getElementById("name"+id).innerHTML;
+ var field=document.getElementById("field"+id).innerHTML;
+ document.getElementById("name"+id).innerHTML="<input type='text' class='form-control' autofocus id='user_text"+id+"' value='"+name+"'>";
+ document.getElementById("field"+id).innerHTML="<input type='text' class='form-control' id='author_text"+id+"' value='"+field+"'>";
     
  document.getElementById("edit_button"+id).style.display="none";
  document.getElementById("save_button"+id).style.display="block";
