@@ -61,7 +61,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="author.php">Authors</a></li>
                                     <li><a href="reviewer.php">Reviewers</a></li>
-                                    <li><a href="path.php">Participat</a></li>
+                                    <li><a href="participant.php">Participant</a></li>
                                     
                                 </ul>
                             </li>

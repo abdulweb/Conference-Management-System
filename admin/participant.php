@@ -7,58 +7,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
 {
     header('location:../index.php');
 }
-if (isset($_POST['add_reviewer'])) {
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirmpassword = $_POST['confirmpassword'];
-    $date_create = date('Y-m-d');
-     $sql = mysqli_query($con, "select * from user_tb where usertype ='$email'");
-     if (mysqli_num_rows($sql)>0) {
-         echo "<script>alert('User Already Exist')</script>";
-     }
-     else{
-            // $mail = new PHPMailer();
 
-            // $mail->IsSMTP();
-            // $mail->SMTPAuth   = true;                  // enable SMTP authentication
-            // $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-            // $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-            // $mail->Port       = 465; //or 587
-
-            // $mail->Username   = "binraheem01@gmail.com";  // GMAIL username
-            // $mail->Password   = "babatunde";            // GMAIL password
-            // $mail ->SetFrom('Onine Conference Management');
-
-            // $mail->From     = $email;
-            // $mail->FromName   = "no-reply";
-            // $mail->Subject    = "Your Personal Account";
-            // $mail->Body    = "Kindly Login with the following credential and Update Your Profile "; //Text Body
-            // $mail->WordWrap   = 50; // set word wrap
-            // $mail ->AddAddress($email);
-            // // $mail->AddAttachment('images/'.$Uname.'.pdf');
-            // if(!$mail->Send())
-            // {
-            //    echo "Message could not be sent. <p>";
-            //    echo "Mailer Error: " . $mail->ErrorInfo;
-            //    exit;
-            // }
-            // else
-            // {
-                    $query_sql = mysqli_query($con, "INSERT INTO user_tb(email,username,password,usertype,date_create)VALUES('$email','$username','$password','reviewer','$date_create')") or die(mysqli_error($con));
-                    if ($query_sql) {
-                        echo "<script>alert('New Reviewer Added Successfully')</script>";
-                    }
-                    else
-                    {
-                         echo "<script>alert('Error Occur /n Please Retry')</script>";
-                    }
-            }
-        
-        
-           
-     // }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,34 +43,7 @@ if (isset($_POST['add_reviewer'])) {
             display: none;
         }
     </style>
-    <script type="text/javascript">
-function valid()
-{
-if(document.addemp.password.value!= document.addemp.confirmpassword.value)
-{
-alert(" Password and Confirm Password does not match  !!");
-document.addemp.confirmpassword.focus();
-return false;
-}
-// check if all is empty
-var mail = $('#email').val().length;
-var username = $('#username').val().length;
-var conpass = $('#confirmpassword').val().length;
-if(mail<1 || username <1 || conpass < 1){
-    alert("All Field Must Be fill");
-    return false;
-}
-// check is password is more than four character
-var x = $('#password').val().length;
-if(x< 4)
-{
-    alert("Passwords must be More than four character.");
-    return false;
-}
-
     
-}
-</script>
     <body class="fixed-left" style="color: rgb(51,51,51);">
 
         <!-- Loader -->
@@ -161,14 +83,14 @@ if(x< 4)
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Manage Reviewer </h4>
+                                    <h4 class="page-title">Manage Participant </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="index.php">Dashboard</a>
                                         </li>
                                         
                                         <li class="active">
-                                            Manage Reviewer
+                                            Manage Participant
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -182,8 +104,8 @@ if(x< 4)
                         <div class="col-sm-12">
                         <div class="card-box table-responsive">
                            <div class="panel panel-primary">
-                            <div style="padding-bottom: 10px;"><button class="btn btn-success" style="float: right;" data-toggle="modal" data-target="#con-author-modal"> <i class="mdi mdi-table-edit"> </i>Add Reviewer</button></div>
-                               <div class="panel-heading"> <i class="fa fa-user"> </i> <strong>List of Available Reviewer </strong></div>
+                            
+                               <div class="panel-heading"> <i class="fa fa-user"> </i> <strong>List of Available Participant </strong></div>
                                <div class="panel-body">
                                     <h4 class="m-t-0 header-title"><b></b></h4>
                             <p class="text-muted font-13 m-b-30">
@@ -194,15 +116,15 @@ if(x< 4)
                                 <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th> Reviewer Name</th>
-                                    <th>Reviewer Email</th>
-                                    <th>Field</th>
+                                    <th> Participant Name</th>
+                                    <th>Participant Email</th>
+                                    <th>Phone Number</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                     <?php
                                     error_reporting(0);
-                                        $sqlx = mysqli_query($con, "select * from user_tb where usertype = 'reviewer'") or die(mysqli_error($con));
+                                        $sqlx = mysqli_query($con, "select * from user_tb where usertype = 'Participant'") or die(mysqli_error($con));
 
                                         $counter = 1;
                                         while ($row = mysqli_fetch_assoc($sqlx)) {
@@ -240,16 +162,16 @@ if(x< 4)
                                     <td><?=$counter?></td>
                                     <td id="name<?php echo $row['id']?>"><?=$rows['fullname']?></td>
                                     <td><?=$row['email']?></td>
-                                    <td id="field<?php echo $row['id'] ?>"><?=$rows['field']?></td>
+                                    <td id="field<?php echo $row['id'] ?>"><?=$rows['phone']?></td>
                                     <td style="padding-left: 20px;">
                                     <a href=""  ><i class="fa fa-desktop"></i></a>
 
-                                        <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>')"><i class="fa fa-save"></i></a>
+                                        <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
 
                                         <a href="#" class="hidden on-editing cancel-row" onclick="edit_fee('<?=$row['id']?>')"><i class="fa fa-times"></i></a>
 
                                         <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-right: 5px; margin-left: 8px;"></i> </a>
-                                        <a href="#" id="delete<?php echo $row['id'];?>" onclick="return confirm('Ready to Delete')"><i class="fa fa-trash" style="margin-right: 5px;"></i></a>
+                                        <a href="#" id="delete<?php echo $row['id'];?>"><i class="fa fa-trash" style="margin-right: 5px;"></i></a>
 
                                         
                                     </td>
@@ -293,52 +215,6 @@ if(x< 4)
         </div>
         <!-- END wrapper -->
 
-<div id="con-author-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" class="">Reviewer Info</h4>
-                </div>
-                <form method="post" action="" name="addemp">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="passWord2">Email: <span class="required">*</span></label>
-                                    <input type="email" name="email" parsley-trigger="change" required
-                                            class="form-control" id="email">
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="userName">Username<span class="required">*</span></label>
-                                    <input type="text" name="username" parsley-trigger="change" required
-                                            class="form-control" id="username">    
-                                </div>
-                                <div class="form-group">
-                                    <label for="userName">password<span class="required">*</span></label>
-                                    <input type="password" name="password" id="password" parsley-trigger="change" required
-                                            class="form-control" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="userName">confrim Password<span class="required">*</span></label>
-                                    <input type="password" name="confirmpassword" parsley-trigger="change" required
-                                            class="form-control" id="confirmpassword">
-                                </div>
-
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" name="add_reviewer" class="btn btn-success waves-effect" onclick="return valid();">Submit</button>
-                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-</div><!-- /.modal -->
 
 
         <script>
@@ -413,52 +289,6 @@ if(x< 4)
                 });
             });
             TableManageButtons.init();
-
-
-  function edit_reviewer(id)
-{
-    //alert('hey');
- //var title=document.getElementById("title"+id).innerHTML;
- var name=document.getElementById("name"+id).innerHTML;
- var field=document.getElementById("field"+id).innerHTML;
- document.getElementById("name"+id).innerHTML="<input type='text' class='form-control' autofocus id='name_text"+id+"' value='"+name+"'>";
- document.getElementById("field"+id).innerHTML="<input type='text' class='form-control' id='field_text"+id+"' value='"+field+"'>";
-    
- document.getElementById("edit_button"+id).style.display="none";
- document.getElementById("save_button"+id).style.display="block";
-}
-
-function save_row(id)
-{
- var name=document.getElementById("name_text"+id).value;
- var field=document.getElementById("field_text"+id).value;
-    
- $.ajax
- ({
-  type:'post',
-  url:'modify_records.php',
-  data:{
-   edit_reviewer:'edit_reviewer',
-   row_id:id,
-   name:name,
-   field:field,
-  },
-  success:function(response) {
-   if(response=="success")
-   {
-    document.getElementById("name"+id).innerHTML=name;
-    document.getElementById("field"+id).innerHTML=field;
-    document.getElementById("edit_button"+id).style.display="block";
-    document.getElementById("save_button"+id).style.display="none";
-    alert('Record Updated Successfully');
-   }
-   else{
-    alert('something goes wrong');
-   }
-  }
-
- });
-}
 
         </script>
        
