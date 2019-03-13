@@ -95,7 +95,8 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <th>Start Date</th>
                                     <th>End Date </th>
                                     <th>Price</th>
-                                    <th></th>
+                                     <th>Payment Status</th>
+                                    <th>Invoice</th>
                                     
                                 </tr>
                                 </thead>
@@ -120,7 +121,18 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <td><?=$rows['conf_date']?></td>
                                     <td ><?=$rows['conf_end_date']?> </td>
                                     <td ><?=$fees['author']?></td>
-                                    <td></td>
+                                    <td>
+                                        <?php
+                                            if ($row['payment_status'] == 0) {
+                                                echo '<span class="label label-danger">Pending</span>';
+                                            }
+                                            else
+                                                echo '<span class="label label-success">Success</span>';
+                                        ?>
+                                    </td>
+                                    <td>
+                                       <a href="invoice.php?id=<?php echo htmlentities($row['id']);?>"><i class="fa fa-print" style="color: red; font-size: 22px;"> </i></a>
+                                    </td>
                                    
                                 </tr>
                                 </tbody>

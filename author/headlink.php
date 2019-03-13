@@ -6,7 +6,7 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Zircos - Responsive Admin Dashboard Template</title>
+        <title>Enhanced Online Conference Management System</title>
 
         <!-- App css -->
         <link href="..\admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

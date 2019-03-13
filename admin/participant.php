@@ -131,25 +131,9 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                           $auth_email = $row['email'];
                                           $select = mysqli_query($con, "select * from user_profile where email = '$auth_email'");
                                           if (mysqli_num_rows($select) < 1) {?>
-                                             <tbody>
-                                                 <tr>
-                                                     <td><?counter?></td>
-                                                     <td> </td>
-                                                     <td><?=$row['email']?></td>
-                                                     <td> </td>
-                                                     <td style="padding-left: 18px;"> 
-                                                     <a href=""  ><i class="fa fa-desktop"></i></a>
-
-                                                    <a href="#"  class="on-editing save" id="save_button<?php echo $row['id'];?>" onclick="save_row('<?php echo $row['id'];?>');"><i class="fa fa-save"></i></a>
-
-                                                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-
-                                                    <a href="#"  id="edit_button<?php echo $row['id'];?>" class="on-default edit-row" onclick="edit_fee('<?php echo $row['id'];?>');"><i class="fa fa-pencil" style="margin-left: 5px;"></i> </a>
-
-                                                     </td>
-                                                 </tr>
-                                             </tbody>
+                                            
                                          <?php }
+
                                           else{
 
 
@@ -178,8 +162,9 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                 </tr>
                                 </tbody>
                                    <?php
-                                }
-                                    $counter++; }
+                                $counter++;}
+                                     }
+
                                }
                                     ?>
                             </table>
