@@ -30,6 +30,9 @@ if (isset($_POST['loginBtn'])) {
                 elseif ($_SESSION['usertype'] =='reviewer') {
                      header('location:reviewer/profile.php');
                 }
+                elseif ($_SESSION['usertype'] == 'Participant') {
+                     header('location:participant/index.php');
+                }
                 else{
                      $msg = ' Unauthorize User';
                     $message = '<div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert"> 

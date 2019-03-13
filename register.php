@@ -141,7 +141,7 @@ if(x< 8){
                                                         <label for="userName">Registration type<span class="required">*</span></label>
                                                         <select class="form-control" name="usertype" required>
                                                             <option value="">select Registration type</option>
-                                                             <option value="participant">Participant</option>
+                                                             <option value="Participant">Participant</option>
                                                             <option value="author">Author</option>
                                                             <option value="reviewer">Reviewer</option>
                                                         </select>
