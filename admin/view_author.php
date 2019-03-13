@@ -3,7 +3,7 @@ include 'includes/connection.php';
 include("..\phpmailer-master/class.phpmailer.php");
 include("..\phpmailer-master/class.smtp.php");
 session_start();
-$message = $msg = "";
+$message = $msg = ""; $_SESSION['message_verify'] = "";
 if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == null) {
     header('location:../index.php');
 }
@@ -189,6 +189,7 @@ if(isset($_POST['approveBtn'])) {
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
                                     <?php echo $message; ?>
+                                    <?php echo $_SESSION['message_verify']; ?>
                                     <?php
                                         $email = $_GET['id'];
                                         $query = mysqli_query($con, "select * from user_profile where email = '$email'") or die(mysqli_error($con));
@@ -199,9 +200,13 @@ if(isset($_POST['approveBtn'])) {
 
                                                 $sql_query = mysqli_query($con,"select * from conference_tb where id = '$conf_id' ") or die(mysqli_error($con));
                                                 while ($fetchx = mysqli_fetch_assoc($sql_query)) {
+                                                    //$payment_sql = mysqli_query($con, "select * from conference_reg_tb where ")
                                     ?>
+                                    <br>
                                     <h3>Author Paper Details</h3>
-                                   <a href="attach.php?id=<?php echo htmlentities($data_fetch['id']);?>"> <button class="btn btn-primary" style="float: right; margin-bottom:18px; margin-right: 10px;">Attach Reviewer</button> </a>
+                                   <a href="attach.php?id=<?php echo htmlentities($data_fetch['id']);?>"> <button class="btn btn-info" style="float: right; margin-bottom:18px; margin-right: 10px;">Attach Reviewer</button> </a>
+                                   <!-- verify button -->
+                                     <a href="verifypayment.php?getid=<?php echo htmlentities($data_fetch['id']);?>"> <button class="btn btn-success" style="float: right; margin-bottom:18px; margin-right: 10px;"><i class="mdi mdi-check"> </i>Verify Payment</button> </a>
                                     <table class="table table-bordered">
                                         <tr>
                                             <th>Author Name</th>
@@ -225,6 +230,10 @@ if(isset($_POST['approveBtn'])) {
                                         </tr>
                                         <tr>
                                             <th>Reviewer Attach</th>
+                                            <td><?=$data_fetch['reviewer']?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Payment Status</th>
                                             <td><?=$data_fetch['reviewer']?></td>
                                         </tr>
                                         <tr>
