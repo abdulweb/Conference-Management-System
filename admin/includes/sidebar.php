@@ -38,6 +38,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="createConference.php">Add Conference</a></li>
                                     <li><a href="manageConference.php">Manage Conference</a></li>
+                                    <li><a href="payment.php">Conference Payment Fee</a></li>
                                 </ul>
                             </li>
 
