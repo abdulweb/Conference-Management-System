@@ -50,4 +50,14 @@ if(isset($_POST['edit_fee']))
  exit();
 }
 
+if(isset($_POST['edit_reviewer']))
+{
+ $row=$_POST['row_id'];
+ $name=$_POST['name'];
+ $field=$_POST['field'];
+ mysqli_query($con,"update user_profile set fullname='$name',field='$field' where id='$row'");
+ echo "success";
+ exit();
+}
+
 ?>
