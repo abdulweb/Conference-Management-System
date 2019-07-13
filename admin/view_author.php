@@ -200,7 +200,10 @@ if(isset($_POST['approveBtn'])) {
 
                                                 $sql_query = mysqli_query($con,"select * from conference_tb where id = '$conf_id' ") or die(mysqli_error($con));
                                                 while ($fetchx = mysqli_fetch_assoc($sql_query)) {
-                                                    //$payment_sql = mysqli_query($con, "select * from conference_reg_tb where ")
+                                                    $payment_sql = mysqli_query($con, "select * from conference_reg_tb where conf_id = '$conf_id'") or die(mysqli_error($con));
+                                                     $payment_fetch = mysqli_fetch_assoc($payment_sql);
+                                                    
+                                                    
                                     ?>
                                     <br>
                                     <h3>Author Paper Details</h3>
@@ -234,7 +237,18 @@ if(isset($_POST['approveBtn'])) {
                                         </tr>
                                         <tr>
                                             <th>Payment Status</th>
-                                            <td><?=$data_fetch['reviewer']?></td>
+                                            <td>
+                                            <?php
+                                                if ($payment_fetch['payment_status'] == 1) {
+                                                    echo '<span class="label label-success">Success</span>';
+                                                }
+                                                // if ($row['payment_status'] == null) {
+                                                    
+                                                // }
+                                                else
+                                                    echo '<span class="label label-danger">Pending</span>';
+                                            ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>Paper Upload</th>
@@ -277,6 +291,7 @@ if(isset($_POST['approveBtn'])) {
                                     </form> <br><br><hr>
                                     
                                     <?php
+                                    // }
                                         }
                                             }
                                         }
