@@ -283,7 +283,7 @@ if(isset($_POST['approveBtn'])) {
                                     </table>
                                     <form method="post" action="">
                                         <input type="hidden" name="checkpaper" value="<?php echo $data_fetch['id']?>" />
-                                        <button type="submit" name="checkpaper" onclick="return confirm('Are You sure You want to to reject')" class="btn btn-primary" style="float: right; margin-right: 8px;">Check Paper</button>
+                                        <button type="submit" name="checkpaper" class="btn btn-primary" style="float: right; margin-right: 8px;">Check Paper</button>
                                     </form>
                                     <form method="post" action="">
                                         <input type="hidden" name="reject" value="<?php echo $data_fetch['id']?>" />
