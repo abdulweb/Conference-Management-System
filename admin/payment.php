@@ -113,6 +113,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <th>S/N</th>
                                     <th>Email</th>
                                     <th>Status</th>
+                                    <th>Conference Name</th>
                                     <th>User Type</th>
                                 </tr>
                                 </thead>
@@ -142,6 +143,14 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                            }
                                             ?>
                                         
+                                    </td>
+                                    <td>
+                                        <?php 
+                                        $conf_id = $row['conf_id'];
+                                            $sqlx = mysqli_query($con, "SELECT * FROM conference_tb where id = '$conf_id'") or die(mysqli_error($con));
+                                            $get = mysqli_fetch_assoc($sqlx);
+                                            echo $get['conf_title'];
+                                        ?>
                                     </td>
                                     <td><?=strtoupper($data_fetch['usertype'])?></td>
                                     
