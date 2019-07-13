@@ -281,8 +281,8 @@ if(isset($_POST['approveBtn'])) {
                                             </td>
                                         </tr>
                                     </table>
-                                    <form method="post" action="">
-                                        <input type="hidden" name="checkpaper" value="<?php echo $data_fetch['id']?>" />
+                                    <form method="post" action= "checkPaper.php" method="get">
+                                        <input type="hidden" name="checkpaper" value="<?=$data_fetch['id']?>" />
                                         <button type="submit" name="checkpaper" class="btn btn-primary" style="float: right; margin-right: 8px;">Check Paper</button>
                                     </form>
                                     <form method="post" action="">
