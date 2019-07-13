@@ -150,7 +150,7 @@ $comt_query = mysqli_query($con, "INSERT INTO comment_tb(conf_id,document_id,mes
                                                     // $sql_query = mysqli_query($con, "select * from upload_document where author_email ='".$_SESSION['user']."'");
                                                     if (mysqli_num_rows($select)>0)
                                                     {
-                                                        
+                                                       
                                                            echo $rows['reviewer'] . '<br>';
                                                        }
                                                     else{

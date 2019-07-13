@@ -90,7 +90,7 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
                                     <th>S/N</th>
                                     <th> Conference Title</th>
                                     <th>Paper</th>
-                                    <th>Reviewer Attach</th>
+                                    <th> No of Reviewer Attach</th>
                                     <th>paper status</th>
                                     <th></th>
                                 </tr>
