@@ -6,12 +6,11 @@ if (empty($_SESSION['user']) || $_SESSION['user'] == '' || $_SESSION['user'] == 
     header('location:../index.php');
 }
 
-$get_id = $_GET['get_read'];
+$get_id = $_GET['checkpaper'];
 $query = mysqli_query($con, "SELECT * FROM upload_document where id = $get_id ");
-if (mysqli_num_rows($query) > 0) {
-	$row = mysqli_fetch_assoc($query);
-	$title = $row['document'];
-    $rebrand = "..\author/".$title;
+$row = mysqli_fetch_assoc($query);
+$title = $row['document'];
+$rebrand = "..\author/".$title;
 
 //dependencies and autoload
 //$txt=($_REQUEST['filepath']);
