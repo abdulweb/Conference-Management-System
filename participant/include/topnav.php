@@ -50,9 +50,14 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="conference.php"><i class="mdi mdi-layers"></i>Conference</a>
+                                <a href="#"><i class="mdi mdi-layers"></i>Conference</a>
+                                <ul class="submenu">
+                                   <li><a href="conference.php"><i class="mdi mdi-layers"></i>Conferences</a></li>
+                                    <li><a href="myConference.php"><i class="mdi mdi-book"></i> Registered Conference</a></li>
+                                </ul>
                                 
                             </li>
+
 
                             <li class="has-submenu">
                                 <a href="profile.php"><i class="mdi mdi-account"></i>Profile</a>
