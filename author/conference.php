@@ -122,8 +122,13 @@ $user_email = $_SESSION['user'];
                                                 $check = mysqli_query($con, "select * from conference_reg_tb where conf_id ='$conf_id' and user_email ='$user_email' ");
                                                 if (mysqli_num_rows($check) > 0) 
                                                     {
+                                                    $check_row = mysqli_fetch_assoc($check);
                                                         ?>
-                                                     <a href="conf-un_register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-danger btn-rounded" onclick="return confirm('Wont Attend again?');"><i class="mdi mdi-account-remove" ></i><span>Not Attend</span></a>
+                                                        <a href="invoice.php?id=<?php echo htmlentities($check_row['id'])?>" class="btn btn-primary">Print Invoice</a>
+                                                        <?php 
+                                                        
+                                                        ?>
+                                                     <a href="conf-un_register.php?id=<?php echo htmlentities($row['id']);?>" class="btn btn-danger btn-rounded" onclick="return confirm('Wont To cancel your Attending?');"><i class="mdi mdi-account-remove" ></i><span>Not Attend</span></a>
                                                    <?php 
                                                     }
                                                     else
